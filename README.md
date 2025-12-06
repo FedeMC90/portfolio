@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Personal - Federico MC
 
-## Getting Started
+Portfolio web profesional desarrollado con Next.js, Tailwind CSS y Framer Motion.
 
-First, run the development server:
+## 🚀 Características
+
+- ✨ **SPA (Single Page Application)** - Navegación fluida sin recargas de página
+- 🎨 **Diseño Moderno** - Interface limpia y profesional con Tailwind CSS
+- 🎭 **Animaciones Suaves** - Transiciones elegantes con Framer Motion
+- 📱 **Responsive** - Optimizado para todos los dispositivos
+- ⚡ **Rendimiento** - Construido con Next.js 16 y TypeScript
+- 🌐 **SEO Optimizado** - Metadata configurada para mejores resultados en buscadores
+
+## 📋 Secciones
+
+- **Experiencia Laboral** - Historial profesional detallado
+- **Estudios** - Formación académica y certificaciones
+- **Proyectos** - Proyectos destacados con tecnologías utilizadas
+- **Contacto** - Información de contacto y formulario de mensaje
+
+## 🛠️ Tecnologías
+
+- [Next.js 16](https://nextjs.org/) - Framework de React
+- [Tailwind CSS 4](https://tailwindcss.com/) - Framework de estilos
+- [Framer Motion 12](https://www.framer.com/motion/) - Librería de animaciones
+- [TypeScript 5](https://www.typescriptlang.org/) - Tipado estático
+
+## 📦 Instalación
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/FedeMC90/portfolio.git
+
+# Entrar al directorio
+cd portfolio
+
+# Instalar dependencias
+npm install
+```
+
+## 🚀 Uso
+
+### Modo Desarrollo
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Construir para Producción
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+### Ejecutar en Producción
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Ejecutar Linter
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run lint
+```
 
-## Deploy on Vercel
+## 📁 Estructura del Proyecto
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+portfolio/
+├── app/                      # Directorio de la aplicación Next.js
+│   ├── layout.tsx           # Layout raíz con metadata
+│   ├── page.tsx             # Página principal con lógica de navegación
+│   ├── globals.css          # Estilos globales
+│   └── favicon.ico          # Favicon
+├── components/              # Componentes React
+│   ├── Header.tsx          # Cabecera con foto y nombre
+│   ├── Navigation.tsx      # Barra de navegación
+│   ├── ExperienciaSection.tsx    # Sección de experiencia laboral
+│   ├── EstudiosSection.tsx       # Sección de estudios
+│   ├── ProyectosSection.tsx      # Sección de proyectos
+│   └── ContactoSection.tsx       # Sección de contacto
+├── public/                  # Archivos estáticos
+│   └── images/             # Imágenes
+│       └── profile.svg     # Foto de perfil
+├── package.json            # Dependencias del proyecto
+├── tsconfig.json          # Configuración de TypeScript
+└── next.config.ts        # Configuración de Next.js
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎨 Personalización
+
+### Cambiar Información Personal
+
+1. **Header** (`components/Header.tsx`): Modifica el nombre y título
+2. **Secciones**: Edita los datos de ejemplo en cada componente de sección
+3. **Foto de Perfil**: Reemplaza `/public/images/profile.svg` con tu propia imagen
+4. **Metadata**: Actualiza el título y descripción en `app/layout.tsx`
+
+### Modificar Colores
+
+Los colores se pueden cambiar directamente en los componentes usando las clases de Tailwind CSS:
+- Azul primario: `bg-blue-600`, `text-blue-600`
+- Morado: `bg-purple-600`, `text-purple-600`
+- Verde: `bg-green-600`, `text-green-600`
+
+## 📝 Licencia
+
+Este proyecto es de código abierto y está disponible bajo la licencia MIT.
+
+## 👤 Autor
+
+**Federico MC**
+
+- GitHub: [@FedeMC90](https://github.com/FedeMC90)
+
+---
+
+⭐ Si te ha gustado este proyecto, no olvides darle una estrella en GitHub!
