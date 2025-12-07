@@ -42,10 +42,10 @@ const experiencias = [
 		logo: '/images/fpay-logo.png',
 		periodo: 'Octubre 2022 - Enero 2024',
 		logros: [
-      'Desarrollé nuevas soluciones para el sistema de back office.', 
-      'Mejoré la eficiencia del código reduciendo la complejidad de los procesos y los tiempos de carga un 20%.',
-      'Participé activamente en el diseño y refinamiento de las tareas.'
-    ],
+			'Desarrollé nuevas soluciones para el sistema de back office.',
+			'Mejoré la eficiencia del código reduciendo la complejidad de los procesos y los tiempos de carga un 20%.',
+			'Participé activamente en el diseño y refinamiento de las tareas.',
+		],
 	},
 	{
 		id: 4,
@@ -54,10 +54,10 @@ const experiencias = [
 		logo: '/images/psa-logo.png',
 		periodo: 'Enero 2017 - Septiembre 2022',
 		logros: [
-      'Liderazgo y Mentoring: Formación y conducción de equipos de ventas de alto rendimiento. Responsable del onboarding, capacitación técnica y coaching continuo de nuevos miembros. ', 
-      'Gestión de Proyectos: Planificación estratégica y ejecución de objetivos comerciales a corto y largo plazo, desarrollando una fuerte autodisciplina y gestión del tiempo. ',
-      'Comunicación efectiva: Desarrollo de oratoria y negociación para la gestión de clientes y resolución de conflictos. '
-    ],
+			'Liderazgo y Mentoring: Formación y conducción de equipos de ventas de alto rendimiento. Responsable del onboarding, capacitación técnica y coaching continuo de nuevos miembros. ',
+			'Gestión de Proyectos: Planificación estratégica y ejecución de objetivos comerciales a corto y largo plazo, desarrollando una fuerte autodisciplina y gestión del tiempo. ',
+			'Comunicación efectiva: Desarrollo de oratoria y negociación para la gestión de clientes y resolución de conflictos. ',
+		],
 	},
 	{
 		id: 5,
@@ -66,9 +66,9 @@ const experiencias = [
 		logo: '/images/istorming-logo.png',
 		periodo: 'Diciembre 2010 - Diciembre 2016',
 		logros: [
-      'Optimicé el rendimiento del sistema de liquidación mediante refactoring estratégico de código, logrando un 15% de reducción en los tiempos de proceso.', 
-      'Implementé nuevas funcionalidades basadas en los requisitos del cliente, mejorando la satisfacción del usuario final y reduciendo los tickets de soporte en un 10%.',
-    ],
+			'Optimicé el rendimiento del sistema de liquidación mediante refactoring estratégico de código, logrando un 15% de reducción en los tiempos de proceso.',
+			'Implementé nuevas funcionalidades basadas en los requisitos del cliente, mejorando la satisfacción del usuario final y reduciendo los tickets de soporte en un 10%.',
+		],
 	},
 ];
 
@@ -81,7 +81,7 @@ export default function ExperienciaSection() {
 			transition={{ duration: 0.5 }}
 			className='w-full max-w-4xl mx-auto px-4 py-8'
 		>
-			<h2 className='text-3xl md:text-4xl font-bold text-gray-800 mb-8'>Experiencia Laboral</h2>
+			<h2 className='text-3xl md:text-4xl font-bold text-[#00d9ff] mb-8 glow-text'>Experiencia Laboral</h2>
 
 			<div className='space-y-6'>
 				{experiencias.map((exp, index) => (
@@ -90,11 +90,11 @@ export default function ExperienciaSection() {
 						initial={{ opacity: 0, x: -50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ delay: index * 0.2, duration: 0.5 }}
-						className='bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-600'
+						className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[#00d9ff]/30 p-6 hover:border-[#00d9ff] transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,217,255,0.2)]'
 					>
 						<div className='flex items-start justify-between gap-4'>
 							<div className='flex-1'>
-								<h3 className='text-xl font-bold text-gray-800'>{exp.cargo}</h3>
+								<h3 className='text-xl font-bold text-[#e4e9f0]'>{exp.cargo}</h3>
 								{exp.link ? (
 									<a
 										href={exp.link}
@@ -105,16 +105,16 @@ export default function ExperienciaSection() {
 										{exp.empresa} 🔗
 									</a>
 								) : (
-									<p className='text-blue-600 font-medium mt-1'>{exp.empresa}</p>
+									<p className='text-[#00d9ff] font-medium mt-2'>{exp.empresa}</p>
 								)}
-								<p className='text-gray-500 text-sm mt-1'>{exp.periodo}</p>
+								<p className='text-gray-400 text-sm mt-1'>{exp.periodo}</p>
 							</div>
-							<div className='relative w-16 h-16 flex-shrink-0'>
+							<div className='relative w-16 h-16 flex-shrink-0 bg-white rounded-lg p-2'>
 								<Image
 									src={exp.logo}
 									alt={`Logo ${exp.empresa}`}
 									fill
-									className='object-contain'
+									className='object-contain rounded-lg'
 								/>
 							</div>
 						</div>
@@ -122,9 +122,9 @@ export default function ExperienciaSection() {
 							{exp.logros.map((logro, idx) => (
 								<li
 									key={idx}
-									className='text-gray-700 flex items-start gap-2'
+									className='text-gray-300 flex items-start gap-2'
 								>
-									<span className='text-blue-600 mt-1'>•</span>
+									<span className='text-[#00d9ff] mt-1'>•</span>
 									<span>{logro}</span>
 								</li>
 							))}
