@@ -14,14 +14,14 @@ export default function Header() {
 			initial={{ opacity: 0, y: -50 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ duration: 0.5 }}
-			className='w-full bg-gradient-to-r from-blue-600 to-purple-600 py-8 px-4 shadow-lg'
+			className='w-full bg-gradient-to-r from-[#0a0e1a] via-[#141b2d] to-[#0a0e1a] py-12 px-4 border-b border-[#00d9ff]/20'
 		>
-			<div className='max-w-6xl mx-auto flex flex-col items-center gap-4 md:flex-row md:gap-8'>
+			<div className='max-w-6xl mx-auto flex flex-col items-center gap-6 md:flex-row md:gap-8'>
 				{/* Foto de perfil con animación */}
 				<motion.div
-					whileHover={{ scale: 1.1 }}
+					whileHover={{ scale: 1.05 }}
 					transition={{ type: 'spring', stiffness: 300 }}
-					className='relative w-34 h-34 rounded-full overflow-hidden border-4 border-white shadow-xl'
+					className='relative w-32 h-32 rounded-full overflow-hidden border-4 border-[#00d9ff] shadow-[0_0_30px_rgba(0,217,255,0.5)]'
 				>
 					<video
 						src='/images/profile_video.mp4'
@@ -39,7 +39,7 @@ export default function Header() {
 						initial={{ opacity: 0, x: -20 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ delay: 0.2, duration: 0.5 }}
-						className='text-3xl md:text-4xl font-bold text-white'
+						className='text-4xl md:text-5xl font-bold text-white glow-text'
 					>
 						Federico Matias Ciociano
 					</motion.h1>
@@ -47,7 +47,7 @@ export default function Header() {
 						initial={{ opacity: 0, x: -20 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ delay: 0.3, duration: 0.5 }}
-						className='text-lg text-blue-100 mt-1'
+						className='text-xl text-[#00d9ff] mt-2 font-light'
 					>
 						Desarrollador Full Stack
 					</motion.p>
