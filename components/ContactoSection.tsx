@@ -135,7 +135,11 @@ export default function ContactoSection() {
 
 						<div className='space-y-3'>
 							{/* Email */}
-							<div className='flex items-center gap-3'>
+							<motion.a
+								href={`mailto:${contactInfo.email}`}
+								whileHover={{ scale: 1.05, x: 10 }}
+								className='flex items-center gap-3 p-2 pl-4 rounded-lg hover:bg-[#00d9ff]/10 transition-colors border border-transparent hover:border-[#00d9ff]/30'
+							>
 								<svg
 									className='w-6 h-6 text-[#00d9ff]'
 									fill='none'
@@ -151,17 +155,18 @@ export default function ContactoSection() {
 								</svg>
 								<div>
 									<p className='text-sm text-gray-400'>Email</p>
-									<a
-										href={`mailto:${contactInfo.email}`}
-										className='text-[#00d9ff] hover:underline'
-									>
-										{contactInfo.email}
-									</a>
+									<p className='text-[#00d9ff]'>{contactInfo.email}</p>
 								</div>
-							</div>
+							</motion.a>
 
 							{/* Teléfono */}
-							<div className='flex items-center gap-3'>
+							<motion.a
+								href='https://wa.me/5491138650926'
+								target='_blank'
+								rel='noopener noreferrer'
+								whileHover={{ scale: 1.05, x: 10 }}
+								className='flex items-center gap-3 p-2 pl-4 rounded-lg hover:bg-[#00d9ff]/10 transition-colors border border-transparent hover:border-[#00d9ff]/30'
+							>
 								<svg
 									className='w-6 h-6 text-[#00d9ff]'
 									fill='none'
@@ -177,12 +182,12 @@ export default function ContactoSection() {
 								</svg>
 								<div>
 									<p className='text-sm text-gray-400'>Teléfono</p>
-									<p className='text-[#e4e9f0]'>{contactInfo.telefono}</p>
+									<p className='text-[#00d9ff]'>{contactInfo.telefono}</p>
 								</div>
-							</div>
+							</motion.a>
 
 							{/* Ubicación */}
-							<div className='flex items-center gap-3'>
+							<div className='flex items-center gap-3 pl-4'>
 								<svg
 									className='w-6 h-6 text-[#00d9ff]'
 									fill='none'
@@ -202,7 +207,7 @@ export default function ContactoSection() {
 										d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'
 									/>
 								</svg>
-                <p className='text-sm text-gray-400'>Buenos Aires, Argentina</p>
+								<p className='text-sm text-gray-400'>Buenos Aires, Argentina</p>
 							</div>
 						</div>
 					</motion.div>
