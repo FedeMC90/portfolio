@@ -42,7 +42,7 @@ export default function Home() {
 	};
 
 	return (
-		<div className='min-h-screen'>
+		<div className='min-h-screen flex flex-col'>
 			{/* Navegación con botones para cada sección */}
 			<Navigation
 				activeSection={activeSection}
@@ -50,12 +50,12 @@ export default function Home() {
 			/>
 
 			{/* Contenedor principal con transiciones suaves */}
-			<main className='pt-16'>
+			<main className='pt-16 flex-grow'>
 				<AnimatePresence mode='wait'>{renderSection()}</AnimatePresence>
 			</main>
 
 			{/* Footer */}
-			<footer className='w-full bg-[#0a0e1a] border-t border-[#00d9ff]/20 text-[#e4e9f0] py-6 mt-8'>
+			<footer className='w-full bg-[#0a0e1a] border-t border-[#00d9ff]/20 text-[#e4e9f0] py-6 mt-auto'>
 				<div className='max-w-6xl mx-auto px-4 text-center'>
 					<p className='text-sm'>© 2025 FMC. Todos los derechos reservados.</p>
 				</div>
