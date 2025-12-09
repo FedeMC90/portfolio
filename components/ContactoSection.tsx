@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { useState, FormEvent } from 'react';
 import emailjs from '@emailjs/browser';
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 
 /**
  * Componente ContactoSection - Sección de contacto
@@ -52,9 +54,9 @@ export default function ContactoSection() {
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
-		phone: '',
 		message: '',
 	});
+	const [phone, setPhone] = useState<string>('');
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -81,14 +83,15 @@ export default function ContactoSection() {
 				{
 					name: formData.name,
 					email: formData.email,
-					phone: formData.phone,
+					phone: phone,
 					message: formData.message,
 					to_name: 'Federico',
 				}
 			);
 
 			setSubmitStatus('success');
-			setFormData({ name: '', email: '', message: '', phone: '' });
+			setFormData({ name: '', email: '', message: '' });
+			setPhone('');
 		} catch (error) {
 			console.error('Error al enviar el mensaje:', error);
 			setSubmitStatus('error');
@@ -288,7 +291,6 @@ export default function ContactoSection() {
 								placeholder='tu@email.com'
 							/>
 						</div>
-
 						{/* Phone */}
 						<div>
 							<label
@@ -297,12 +299,14 @@ export default function ContactoSection() {
 							>
 								Teléfono
 							</label>
-							<input
-								type='telephone'
-								id='phone'
-								value={formData.phone}
-								onChange={handleChange}
-								className='w-full px-4 py-2 bg-[#0a0e1a]/50 border border-[#00d9ff]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00d9ff] text-white placeholder-gray-500'
+							<PhoneInput
+								international
+								defaultCountry='AR'
+								value={phone}
+								onChange={(value) => setPhone(value || '')}
+								limitMaxLength={true}
+								smartCaret={true}
+								className='phone-input w-full px-4 py-2 bg-[#0a0e1a]/50 border border-[#00d9ff]/30 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-[#00d9ff]'
 							/>
 						</div>
 
