@@ -11,26 +11,19 @@ import { motion } from 'framer-motion';
 const proyectos = [
 	{
 		id: 1,
-		nombre: 'E-Commerce Platform',
+		nombre: 'Portfolio Personal',
 		descripcion:
-			'Plataforma de comercio electrónico con carrito de compras, pasarela de pago y panel de administración.',
-		tecnologias: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-		url: '#',
+			'Este portfolio desarrollado con el objetivo de mostrar mis habilidades y proyectos. Utilicé tecnologías modernas para crear una experiencia de usuario atractiva y funcional.',
+		tecnologias: ['Next.js', 'TypeScript', 'Framer Motion', 'Tailwind CSS'],
+		url: 'https://fmc-portfolio.vercel.app/',
 	},
 	{
 		id: 2,
-		nombre: 'Task Manager App',
+		nombre: 'Biblioteca de juegos',
 		descripcion:
-			'Aplicación de gestión de tareas con funcionalidad de arrastrar y soltar, notificaciones y colaboración en equipo.',
-		tecnologias: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL'],
-		url: '#',
-	},
-	{
-		id: 3,
-		nombre: 'Portfolio Personal',
-		descripcion: 'Portafolio web SPA con animaciones suaves y diseño responsive.',
-		tecnologias: ['Next.js', 'Framer Motion', 'Tailwind CSS'],
-		url: '#',
+			'Fue mi proyecto final individual bootcamp Henry. Con una estructura básica y algunos conceptos que debía cumplir otorgados por el instituto diseñé, construí y desarrollé tanto back, front y la base de datos desde cero.',
+		tecnologias: ['JavaScript', 'React', 'Node.js', 'PostgreSQL', 'Sequelize', 'Express'],
+		url: 'https://lojueguito.onrender.com/',
 	},
 ];
 
