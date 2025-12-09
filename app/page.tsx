@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import Header from '@/components/Header';
 import Navigation from '@/components/Navigation';
+import HomeSection from '@/components/HomeSection';
 import ExperienciaSection from '@/components/ExperienciaSection';
 import EstudiosSection from '@/components/EstudiosSection';
 import ProyectosSection from '@/components/ProyectosSection';
@@ -16,7 +16,7 @@ import ContactoSection from '@/components/ContactoSection';
  */
 export default function Home() {
 	// Estado para controlar qué sección está activa
-	const [activeSection, setActiveSection] = useState('experiencia');
+	const [activeSection, setActiveSection] = useState('home');
 
 	// Función para cambiar de sección
 	const handleSectionChange = (section: string) => {
@@ -26,6 +26,8 @@ export default function Home() {
 	// Función para renderizar la sección activa
 	const renderSection = () => {
 		switch (activeSection) {
+			case 'home':
+				return <HomeSection key='home' />;
 			case 'experiencia':
 				return <ExperienciaSection key='experiencia' />;
 			case 'estudios':
@@ -35,7 +37,7 @@ export default function Home() {
 			case 'contacto':
 				return <ContactoSection key='contacto' />;
 			default:
-				return <ExperienciaSection key='experiencia' />;
+				return <HomeSection key='home' />;
 		}
 	};
 
@@ -47,20 +49,15 @@ export default function Home() {
 				onSectionChange={handleSectionChange}
 			/>
 
-			{/* Header con foto de perfil y nombre */}
-			<div className='pt-16'>
-				<Header />
-			</div>
-
 			{/* Contenedor principal con transiciones suaves */}
-			<main className='py-8'>
+			<main className='pt-16'>
 				<AnimatePresence mode='wait'>{renderSection()}</AnimatePresence>
 			</main>
 
 			{/* Footer */}
-			<footer className='w-full bg-[#0a0e1a] border-t border-[#00d9ff]/20 text-[#e4e9f0] py-6 mt-12'>
+			<footer className='w-full bg-[#0a0e1a] border-t border-[#00d9ff]/20 text-[#e4e9f0] py-6 mt-8'>
 				<div className='max-w-6xl mx-auto px-4 text-center'>
-					<p className='text-sm'>© {new Date().getFullYear()} Federico MC. Todos los derechos reservados.</p>
+					<p className='text-sm'>© 2025 FMC. Todos los derechos reservados.</p>
 				</div>
 			</footer>
 		</div>
