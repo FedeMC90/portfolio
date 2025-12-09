@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 /**
  * Componente Navigation - Barra de navegación con botones
@@ -16,6 +17,7 @@ interface NavigationProps {
 
 // Array con las secciones disponibles
 const sections = [
+	{ id: 'home', label: 'Inicio' },
 	{ id: 'experiencia', label: 'Experiencia Laboral' },
 	{ id: 'estudios', label: 'Estudios' },
 	{ id: 'proyectos', label: 'Proyectos' },
@@ -25,7 +27,25 @@ const sections = [
 export default function Navigation({ activeSection, onSectionChange }: NavigationProps) {
 	return (
 		<nav className='fixed top-0 left-0 right-0 z-50 w-full bg-[#0a0e1a]/90 backdrop-blur-lg border-b border-[#00d9ff]/10'>
-			<div className='max-w-6xl mx-auto px-4 py-3 flex items-center justify-between'>
+			<div className='max-w-8xl mx-auto py-3 flex items-center justify-between px-6 md:px-15'>
+				{/* Logo */}
+				<motion.div
+					initial={{ opacity: 0, x: -20 }}
+					animate={{ opacity: 1, x: 0 }}
+					transition={{ duration: 0.5 }}
+					whileHover={{ scale: 1.1 }}
+					className='cursor-pointer'
+					onClick={() => onSectionChange('home')}
+				>
+					<Image
+						src='/images/fmc-logo.png'
+						alt='Logo FMC'
+						width={90}
+						height={50}
+						className='object-contain drop-shadow-[0_0_15px_rgba(0,217,255,0.8)]'
+					/>
+				</motion.div>
+
 				<ul className='flex flex-wrap justify-center gap-1 md:gap-2 flex-1'>
 					{sections.map((section, index) => (
 						<motion.li
