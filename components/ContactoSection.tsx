@@ -124,17 +124,17 @@ export default function ContactoSection() {
 				transition={{ duration: 0.5 }}
 				className='w-full max-w-4xl mx-auto px-4 py-8'
 			>
-				<h2 className='text-3xl md:text-4xl font-bold text-[#00d9ff] mb-8 glow-text'>Contacto</h2>
+				<h2 className='text-2xl sm:text-3xl md:text-4xl font-bold text-[#00d9ff] mb-6 sm:mb-8 glow-text'>Contacto</h2>
 
-				<div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8'>
 					{/* Información de contacto */}
 					<motion.div
 						initial={{ opacity: 0, x: -50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ delay: 0.2, duration: 0.5 }}
-						className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[#00d9ff]/30 p-6 hover:border-[#00d9ff] transition-all'
+						className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[#00d9ff]/30 p-4 sm:p-6 hover:border-[#00d9ff] transition-all'
 					>
-						<h3 className='text-xl font-bold text-[#e4e9f0] mb-4'>Información de Contacto</h3>
+						<h3 className='text-lg sm:text-xl font-bold text-[#e4e9f0] mb-3 sm:mb-4'>Información de Contacto</h3>
 
 						<div className='space-y-3'>
 							{/* Email */}
@@ -220,9 +220,9 @@ export default function ContactoSection() {
 						initial={{ opacity: 0, x: 50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ delay: 0.3, duration: 0.5 }}
-						className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[#00d9ff]/30 p-6 hover:border-[#00d9ff] transition-all'
+						className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[#00d9ff]/30 p-4 sm:p-6 hover:border-[#00d9ff] transition-all'
 					>
-						<h3 className='text-xl font-bold text-[#e4e9f0] mb-4'>Redes Sociales</h3>
+						<h3 className='text-lg sm:text-xl font-bold text-[#e4e9f0] mb-3 sm:mb-4'>Redes Sociales</h3>
 
 						<div className='space-y-3'>
 							{contactInfo.redesSociales.map((red, index) => (
@@ -247,9 +247,9 @@ export default function ContactoSection() {
 					initial={{ opacity: 0, x: 50 }}
 					animate={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.3, duration: 0.5 }}
-					className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[#00d9ff]/30 p-6 hover:border-[#00d9ff] transition-all mt-8'
+					className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[#00d9ff]/30 p-4 sm:p-6 hover:border-[#00d9ff] transition-all mt-6 sm:mt-8'
 				>
-					<h3 className='text-xl font-bold text-[#e4e9f0] mb-4'>Envíame un mensaje</h3>
+					<h3 className='text-lg sm:text-xl font-bold text-[#e4e9f0] mb-3 sm:mb-4'>Envíame un mensaje</h3>
 
 					<form
 						onSubmit={handleSubmit}
@@ -356,7 +356,7 @@ export default function ContactoSection() {
 							disabled={isSubmitting}
 							whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
 							whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-							className={`w-full px-6 py-3 rounded-lg font-medium transition-colors ${
+							className={`w-full px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium text-sm sm:text-base transition-colors ${
 								isSubmitting
 									? 'bg-gray-600 cursor-not-allowed'
 									: 'bg-[#00d9ff] hover:bg-[#00b8d4] shadow-[0_0_20px_rgba(0,217,255,0.3)]'

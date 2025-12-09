@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { useState } from 'react';
 
 /**
  * Componente Navigation - Barra de navegación con botones
@@ -25,68 +26,185 @@ const sections = [
 ];
 
 export default function Navigation({ activeSection, onSectionChange }: NavigationProps) {
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+	const handleMobileNavClick = (sectionId: string) => {
+		onSectionChange(sectionId);
+		setIsMobileMenuOpen(false);
+	};
+
 	return (
-		<nav className='fixed top-0 left-0 right-0 z-50 w-full bg-[#0a0e1a]/90 backdrop-blur-lg border-b border-[#00d9ff]/10'>
-			<div className='max-w-8xl mx-auto py-3 flex items-center justify-between px-6 md:px-15'>
-				{/* Logo */}
-				<motion.div
-					initial={{ opacity: 0, x: -20 }}
-					animate={{ opacity: 1, x: 0 }}
-					transition={{ duration: 0.5 }}
-					whileHover={{ scale: 1.1 }}
-					className='cursor-pointer'
-					onClick={() => onSectionChange('home')}
-				>
-					<Image
-						src='/images/fmc-logo.png'
-						alt='Logo FMC'
-						width={90}
-						height={50}
-						className='object-contain drop-shadow-[0_0_15px_rgba(0,217,255,0.8)]'
-					/>
-				</motion.div>
+		<>
+			<nav className='fixed top-0 left-0 right-0 z-50 w-full bg-[#0a0e1a]/90 backdrop-blur-lg border-b border-[#00d9ff]/10'>
+				<div className='max-w-8xl mx-auto py-2 sm:py-3 flex items-center justify-between px-2 sm:px-4 md:px-15'>
+					{/* Logo */}
+					<motion.div
+						initial={{ opacity: 0, x: -20 }}
+						animate={{ opacity: 1, x: 0 }}
+						transition={{ duration: 0.5 }}
+						whileHover={{ scale: 1.1 }}
+						className='cursor-pointer flex-shrink-0'
+						onClick={() => onSectionChange('home')}
+					>
+						<Image
+							src='/images/fmc-logo.png'
+							alt='Logo FMC'
+							width={60}
+							height={35}
+							className='object-contain drop-shadow-[0_0_15px_rgba(0,217,255,0.8)] sm:w-[90px] sm:h-[50px]'
+						/>
+					</motion.div>
 
-				<ul className='flex flex-wrap justify-center gap-1 md:gap-2 flex-1'>
-					{sections.map((section, index) => (
-						<motion.li
-							key={section.id}
-							initial={{ opacity: 0, y: -20 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ delay: index * 0.1, duration: 0.3 }}
-						>
-							<motion.button
-								onClick={() => onSectionChange(section.id)}
-								whileHover={{ scale: 1.02 }}
-								whileTap={{ scale: 0.98 }}
-								className={`relative px-5 py-2.5 md:px-8 md:py-3 font-medium transition-all text-sm md:text-base text-[#00d9ff] ${
-									activeSection === section.id ? 'opacity-100' : 'opacity-60 hover:opacity-100'
-								}`}
+					{/* Desktop Navigation - Hidden on mobile */}
+					<ul className='hidden md:flex flex-wrap justify-center gap-0.5 sm:gap-1 md:gap-2 flex-1 mx-2'>
+						{sections.map((section, index) => (
+							<motion.li
+								key={section.id}
+								initial={{ opacity: 0, y: -20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ delay: index * 0.1, duration: 0.3 }}
 							>
-								{section.label}
-								{/* Línea inferior para el botón activo */}
-								{activeSection === section.id && (
-									<motion.div
-										layoutId='activeTab'
-										className='absolute bottom-0 left-0 right-0 h-0.5 bg-[#00d9ff] shadow-[0_0_10px_rgba(0,217,255,0.8)]'
-										transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-									/>
-								)}
-							</motion.button>
-						</motion.li>
-					))}
-				</ul>
+								<motion.button
+									onClick={() => onSectionChange(section.id)}
+									whileHover={{ scale: 1.02 }}
+									whileTap={{ scale: 0.98 }}
+									className={`relative px-2 py-2 sm:px-3 sm:py-2 md:px-8 md:py-3 font-medium transition-all text-xs sm:text-sm md:text-base text-[#00d9ff] ${
+										activeSection === section.id ? 'opacity-100' : 'opacity-60 hover:opacity-100'
+									}`}
+								>
+									{section.label}
+									{/* Línea inferior para el botón activo */}
+									{activeSection === section.id && (
+										<motion.div
+											layoutId='activeTab'
+											className='absolute bottom-0 left-0 right-0 h-0.5 bg-[#00d9ff] shadow-[0_0_10px_rgba(0,217,255,0.8)]'
+											transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+										/>
+									)}
+								</motion.button>
+							</motion.li>
+						))}
+					</ul>
 
-				{/* Botón Descargar CV */}
-				<motion.a
-					href='/docs/Federico_Ciociano_Frontend.pdf'
-					download='Federico_Ciociano_Frontend.pdf'
-					whileHover={{ scale: 1.05 }}
-					whileTap={{ scale: 0.95 }}
-					className='px-4 py-2 md:px-6 md:py-2.5 border-2 border-[#00d9ff] text-[#00d9ff] font-medium text-sm md:text-base hover:bg-[#00d9ff]/10 transition-all'
-				>
-					Descargar CV
-				</motion.a>
-			</div>
-		</nav>
+					{/* Botón Descargar CV - Desktop only */}
+					<motion.a
+						href='/docs/Federico_Ciociano_Frontend.pdf'
+						download='Federico_Ciociano_Frontend.pdf'
+						whileHover={{ scale: 1.05 }}
+						whileTap={{ scale: 0.95 }}
+						className='hidden md:inline-block px-2 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2.5 border-2 border-[#00d9ff] text-[#00d9ff] font-medium text-xs sm:text-sm md:text-base hover:bg-[#00d9ff]/10 transition-all whitespace-nowrap'
+						title='Descargar CV'
+					>
+						Descargar CV
+					</motion.a>
+
+					{/* Hamburger Menu Button - Mobile only */}
+					<motion.button
+						whileHover={{ scale: 1.1 }}
+						whileTap={{ scale: 0.9 }}
+						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+						className='md:hidden flex flex-col gap-1.5 p-2'
+						aria-label='Menu'
+					>
+						<motion.span
+							animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+							className='w-6 h-0.5 bg-[#00d9ff] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
+						/>
+						<motion.span
+							animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+							className='w-6 h-0.5 bg-[#00d9ff] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
+						/>
+						<motion.span
+							animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+							className='w-6 h-0.5 bg-[#00d9ff] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
+						/>
+					</motion.button>
+				</div>
+			</nav>
+
+			{/* Mobile Sidebar Menu */}
+			<AnimatePresence>
+				{isMobileMenuOpen && (
+					<>
+						{/* Backdrop */}
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							onClick={() => setIsMobileMenuOpen(false)}
+							className='fixed inset-0 bg-black/60 backdrop-blur-sm md:hidden z-[100]'
+							style={{ top: '0' }}
+						/>
+
+						{/* Sidebar */}
+						<motion.div
+							initial={{ x: '100%' }}
+							animate={{ x: 0 }}
+							exit={{ x: '100%' }}
+							transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+							className='fixed right-0 top-0 h-full w-[280px] bg-[#0a0e1a] border-l border-[#00d9ff]/30 shadow-[-10px_0_30px_rgba(0,217,255,0.2)] md:hidden overflow-y-auto z-[101]'
+						>
+							<div className='flex flex-col h-full py-20 px-6'>
+								{/* Close button */}
+								<motion.button
+									whileHover={{ scale: 1.1, rotate: 90 }}
+									whileTap={{ scale: 0.9 }}
+									onClick={() => setIsMobileMenuOpen(false)}
+									className='absolute top-4 right-4 p-2 text-[#00d9ff]'
+									aria-label='Cerrar menu'
+								>
+									<svg
+										className='w-6 h-6'
+										fill='none'
+										stroke='currentColor'
+										viewBox='0 0 24 24'
+									>
+										<path
+											strokeLinecap='round'
+											strokeLinejoin='round'
+											strokeWidth={2}
+											d='M6 18L18 6M6 6l12 12'
+										/>
+									</svg>
+								</motion.button>
+
+								{/* Navigation Links */}
+								<nav className='flex flex-col gap-2'>
+									{sections.map((section, index) => (
+										<motion.button
+											key={section.id}
+											initial={{ opacity: 0, x: 50 }}
+											animate={{ opacity: 1, x: 0 }}
+											transition={{ delay: index * 0.1 }}
+											onClick={() => handleMobileNavClick(section.id)}
+											className={`text-left py-3 px-4 rounded-lg transition-all ${
+												activeSection === section.id
+													? 'bg-[#00d9ff]/20 text-[#00d9ff] border-l-4 border-[#00d9ff]'
+													: 'text-[#00d9ff]/60 hover:bg-[#00d9ff]/10 hover:text-[#00d9ff] border-l-4 border-transparent'
+											}`}
+										>
+											<span className='font-medium text-base'>{section.label}</span>
+										</motion.button>
+									))}
+								</nav>
+
+								{/* CV Download Button */}
+								<motion.a
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ delay: 0.5 }}
+									href='/docs/Federico_Ciociano_Frontend.pdf'
+									download='Federico_Ciociano_Frontend.pdf'
+									onClick={() => setIsMobileMenuOpen(false)}
+									className='mt-auto py-3 px-6 border-2 border-[#00d9ff] text-[#00d9ff] font-bold text-center rounded-lg hover:bg-[#00d9ff]/10 transition-all shadow-[0_0_15px_rgba(0,217,255,0.3)]'
+								>
+									Descargar CV
+								</motion.a>
+							</div>
+						</motion.div>
+					</>
+				)}
+			</AnimatePresence>
+		</>
 	);
 }

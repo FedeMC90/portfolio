@@ -87,29 +87,29 @@ export default function ExperienciaSection() {
 				{experiencias.map((exp, index) => (
 					<motion.div
 						key={exp.id}
-						initial={{ opacity: 0, x: -50 }}
-						animate={{ opacity: 1, x: 0 }}
-						transition={{ delay: index * 0.2, duration: 0.5 }}
+						initial={{ opacity: 0, scale: 0.9 }}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ delay: index * 0.15, duration: 0.4 }}
 						className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[#00d9ff]/30 p-6 hover:border-[#00d9ff] transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,217,255,0.2)]'
 					>
-						<div className='flex items-start justify-between gap-4'>
-							<div className='flex-1'>
-								<h3 className='text-xl font-bold text-[#e4e9f0]'>{exp.cargo}</h3>
+						<div className='flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4'>
+							<div className='flex-1 w-full'>
+								<h3 className='text-lg sm:text-xl font-bold text-[#e4e9f0] leading-tight'>{exp.cargo}</h3>
 								{exp.link ? (
 									<a
 										href={exp.link}
 										target='_blank'
 										rel='noopener noreferrer'
-										className='text-blue-600 font-medium mt-1 hover:underline'
+										className='text-blue-600 font-medium text-sm sm:text-base mt-1 hover:underline inline-block'
 									>
 										{exp.empresa} 🔗
 									</a>
 								) : (
-									<p className='text-[#00d9ff] font-medium mt-2'>{exp.empresa}</p>
+									<p className='text-[#00d9ff] font-medium text-sm sm:text-base mt-1 sm:mt-2'>{exp.empresa}</p>
 								)}
-								<p className='text-gray-400 text-sm mt-1'>{exp.periodo}</p>
+								<p className='text-gray-400 text-xs sm:text-sm mt-1'>{exp.periodo}</p>
 							</div>
-							<div className='relative w-16 h-16 flex-shrink-0 bg-white rounded-lg p-2'>
+							<div className='relative w-12 h-12 sm:w-16 sm:h-16 flex-shrink-0 bg-white rounded-lg p-1.5 sm:p-2'>
 								<Image
 									src={exp.logo}
 									alt={`Logo ${exp.empresa}`}
@@ -122,9 +122,9 @@ export default function ExperienciaSection() {
 							{exp.logros.map((logro, idx) => (
 								<li
 									key={idx}
-									className='text-gray-300 flex items-start gap-2'
+									className='text-gray-300 text-sm sm:text-base flex items-start gap-2'
 								>
-									<span className='text-[#00d9ff] mt-1'>•</span>
+									<span className='text-[#00d9ff] mt-1 flex-shrink-0'>•</span>
 									<span>{logro}</span>
 								</li>
 							))}
