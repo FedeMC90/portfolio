@@ -48,15 +48,15 @@ export default function ProyectosSection() {
 						whileHover={{ scale: 1.03 }}
 						className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[#00d9ff]/30 p-6 hover:border-[#00d9ff] transition-all hover:shadow-[0_0_30px_rgba(0,217,255,0.2)]'
 					>
-						<h3 className='text-xl font-bold text-[#e4e9f0] mb-2'>{proyecto.nombre}</h3>
-						<p className='text-gray-300 mb-4'>{proyecto.descripcion}</p>
+						<h3 className='text-lg sm:text-xl font-bold text-[#e4e9f0] mb-2'>{proyecto.nombre}</h3>
+						<p className='text-gray-300 text-sm sm:text-base mb-4'>{proyecto.descripcion}</p>
 
 						{/* Tecnologías utilizadas */}
 						<div className='flex flex-wrap gap-2 mb-4'>
 							{proyecto.tecnologias.map((tech, techIndex) => (
 								<span
 									key={techIndex}
-									className='px-3 py-1 bg-[#00d9ff]/20 text-[#00d9ff] border border-[#00d9ff]/40 rounded-full text-sm font-medium'
+									className='px-2 sm:px-3 py-1 bg-[#00d9ff]/20 text-[#00d9ff] border border-[#00d9ff]/40 rounded-full text-xs sm:text-sm font-medium'
 								>
 									{tech}
 								</span>
@@ -66,7 +66,9 @@ export default function ProyectosSection() {
 						{/* Botón para ver proyecto */}
 						<a
 							href={proyecto.url}
-							className='inline-block px-4 py-2 bg-[#00d9ff] text-[#0a0e1a] rounded-lg hover:bg-[#00b8d4] transition-colors font-bold shadow-[0_0_15px_rgba(0,217,255,0.3)]'
+							target='_blank'
+							rel='noopener noreferrer'
+							className='inline-block px-3 sm:px-4 py-2 bg-[#00d9ff] text-[#0a0e1a] rounded-lg hover:bg-[#00b8d4] transition-colors font-bold text-sm sm:text-base shadow-[0_0_15px_rgba(0,217,255,0.3)]'
 						>
 							Ver Proyecto
 						</a>
