@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 /**
  * Componente EstudiosSection - Sección de formación académica
@@ -11,24 +12,24 @@ import { motion } from 'framer-motion';
 const estudios = [
 	{
 		id: 1,
-		titulo: 'Ingeniería en Sistemas',
-		institucion: 'Universidad Tecnológica Nacional',
-		periodo: '2014 - 2019',
-		descripcion: 'Especialización en desarrollo de software y arquitectura de sistemas.',
+		titulo: 'FullStack Developer JS/Node.JS/React',
+		institucion: 'Henry Bootcamp',
+		periodo: '2022 - 2023',
+		logo: '/images/henry-logo.png',
+		descripcion: [
+			'Programa intensivo y basado en proyectos que abarca el ciclo completo de desarrollo de aplicaciones web. Dominio del stack PERN (React/Node.js) para la construcción de Front-End y Back-End con bases de datos relacionales y no relacionales.',
+			'Proyecto final. Web tipo librería basada en JavaScript utilizando manejo de estados con React/Redux, Hooks Express y Sequelize para la creación de la base de datos.',
+		],
 	},
 	{
 		id: 2,
-		titulo: 'Certificación React Advanced',
-		institucion: 'Platzi',
-		periodo: '2021',
-		descripcion: 'Curso avanzado de React con hooks, context y patrones de diseño.',
-	},
-	{
-		id: 3,
-		titulo: 'Full Stack Developer Bootcamp',
+		titulo: 'TypeScript: Guía completa',
 		institucion: 'Udemy',
-		periodo: '2020',
-		descripcion: 'Bootcamp intensivo de desarrollo web full stack con MERN stack.',
+		periodo: '2023',
+		logo: '/images/udemy-logo.png',
+		descripcion: [
+			'Este curso me ha proporcionado una base sólida en el lenguaje y aborda temas avanzados para poder desarrollar aplicaciones de alta calidad y comprender mejor las características y ventajas de TypeScript.',
+		],
 	},
 ];
 
@@ -52,10 +53,34 @@ export default function EstudiosSection() {
 						transition={{ delay: index * 0.2, duration: 0.5 }}
 						className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[#00d9ff]/30 p-6 hover:border-[#00d9ff] transition-all hover:shadow-[0_0_30px_rgba(0,217,255,0.2)]'
 					>
-						<h3 className='text-xl font-bold text-[#e4e9f0]'>{estudio.titulo}</h3>
-						<p className='text-[#00d9ff] font-medium mt-2'>{estudio.institucion}</p>
-						<p className='text-gray-400 text-sm mt-1'>{estudio.periodo}</p>
-						<p className='text-gray-300 mt-3'>{estudio.descripcion}</p>
+						<div className='flex items-start justify-between gap-4'>
+							<div className='flex-1'>
+								<h3 className='text-xl font-bold text-[#e4e9f0]'>{estudio.titulo}</h3>
+								<p className='text-[#00d9ff] font-medium mt-2'>{estudio.institucion}</p>
+								<p className='text-gray-400 text-sm mt-1'>{estudio.periodo}</p>
+							</div>
+
+							<div className='relative w-16 h-16 flex-shrink-0 bg-white rounded-lg p-2'>
+								<Image
+									src={estudio.logo}
+									alt={`Logo ${estudio.institucion}`}
+									fill
+									className='object-contain rounded-lg'
+								/>
+							</div>
+						</div>
+
+						<ul className='mt-3 space-y-2'>
+							{estudio.descripcion.map((description, idx) => (
+								<li
+									key={idx}
+									className='text-gray-300 flex items-start gap-2'
+								>
+									<span className='text-[#00d9ff] mt-1'>•</span>
+									<span>{description}</span>
+								</li>
+							))}
+						</ul>
 					</motion.div>
 				))}
 			</div>
