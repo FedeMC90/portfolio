@@ -8,6 +8,22 @@
 	--accent: #00b8d4;
 	--border: rgba(0, 217, 255, 0.2);
 	--card-bg: rgba(20, 27, 45, 0.8);
+	--text-primary: #e4e9f0;
+	--text-secondary: #9ca3af;
+	--primary-cyan: #00d9ff;
+}
+
+/* Modo claro */
+:root:not(.dark) {
+	--background: #ececec;
+	--background-secondary: #c4c4c4;
+	--primary-dark: #0284c7;
+	--accent: #ececec;	
+	--border: rgba(2, 132, 199, 0.2);
+	--card-bg: rgba(255, 255, 255, 0.9);
+	--text-primary: #0a0e1a;
+	--text-secondary: #64748b;
+	--primary-cyan: #0284c7;
 }
 
 @theme inline {
@@ -16,12 +32,20 @@
 	--color-primary: var(--primary);
 }
 
+* {
+	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
 body {
 	background: linear-gradient(135deg, #0a0e1a 0%, #141b2d 50%, #0d1424 100%);
 	background-attachment: fixed;
-	color: var(--foreground);
+	color: var(--text-primary);
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 	min-height: 100vh;
+}
+
+:root:not(.dark) body {
+	background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #f1f5f9 100%);
 }
 
 /* Efectos de glow para elementos neón */

@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 /**
  * Componente Navigation - Barra de navegación con botones
@@ -27,6 +28,7 @@ const sections = [
 
 export default function Navigation({ activeSection, onSectionChange }: NavigationProps) {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const { theme, toggleTheme } = useTheme();
 
 	const handleMobileNavClick = (sectionId: string) => {
 		onSectionChange(sectionId);
@@ -35,7 +37,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 
 	return (
 		<>
-			<nav className='fixed top-0 left-0 right-0 z-50 w-full bg-[#0a0e1a]/90 backdrop-blur-lg border-b border-[#00d9ff]/10'>
+			<nav className='fixed top-0 left-0 right-0 z-50 w-full bg-[#0a0e1a]/90 dark:bg-[#0a0e1a]/90 bg-white/90 backdrop-blur-lg border-b border-[#00d9ff]/10 dark:border-[#00d9ff]/10 border-[#0284c7]/20'>
 				<div className='max-w-8xl mx-auto py-2 sm:py-3 flex items-center justify-between px-2 sm:px-4 md:px-15'>
 					{/* Logo */}
 					<motion.div
@@ -54,7 +56,6 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 							className='object-contain drop-shadow-[0_0_15px_rgba(0,217,255,0.8)] sm:w-[90px] sm:h-[50px]'
 						/>
 					</motion.div>
-
 					{/* Desktop Navigation - Hidden on mobile */}
 					<ul className='hidden md:flex flex-wrap justify-center gap-0.5 sm:gap-1 md:gap-2 flex-1 mx-2'>
 						{sections.map((section, index) => (
@@ -85,7 +86,6 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 							</motion.li>
 						))}
 					</ul>
-
 					{/* Botón Descargar CV - Desktop only */}
 					<motion.a
 						href='/docs/Federico_Ciociano_Frontend.pdf'
@@ -97,7 +97,48 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 					>
 						Descargar CV
 					</motion.a>
-
+					{/* Theme Toggle Button - Desktop only */}
+					<motion.button
+						key={theme}
+						whileHover={{ scale: 1.1, rotate: 15 }}
+						whileTap={{ scale: 0.9 }}
+						onClick={toggleTheme}
+						suppressHydrationWarning
+						className='hidden md:flex items-center justify-center w-10 h-10 ml-3 text-[#00d9ff] hover:bg-[#00d9ff]/10 rounded-full transition-all'
+						aria-label='Cambiar tema'
+					>
+						{theme === 'dark' ? (
+							// Sol para modo oscuro
+							<svg
+								className='w-6 h-6'
+								fill='none'
+								stroke='currentColor'
+								viewBox='0 0 24 24'
+							>
+								<path
+									strokeLinecap='round'
+									strokeLinejoin='round'
+									strokeWidth={2}
+									d='M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z'
+								/>
+							</svg>
+						) : (
+							// Luna para modo claro
+							<svg
+								className='w-6 h-6'
+								fill='none'
+								stroke='currentColor'
+								viewBox='0 0 24 24'
+							>
+								<path
+									strokeLinecap='round'
+									strokeLinejoin='round'
+									strokeWidth={2}
+									d='M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'
+								/>
+							</svg>
+						)}
+					</motion.button>{' '}
 					{/* Hamburger Menu Button - Mobile only */}
 					<motion.button
 						whileHover={{ scale: 1.1 }}
