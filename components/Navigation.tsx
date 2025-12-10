@@ -37,7 +37,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 
 	return (
 		<>
-			<nav className='fixed top-0 left-0 right-0 z-50 w-full bg-[#0a0e1a]/90 dark:bg-[#0a0e1a]/90 bg-white/90 backdrop-blur-lg border-b border-[#00d9ff]/10 dark:border-[#00d9ff]/10 border-[#0284c7]/20'>
+			<nav className='fixed top-0 left-0 right-0 z-50 w-full bg-[var(--background)]/90 dark:bg-[var(--background)]/90 bg-white/90 backdrop-blur-lg border-b border-[var(--primary-cyan)]/10 dark:border-[var(--primary-cyan)]/10 border-[var(--primary-dark)]/20'>
 				<div className='max-w-8xl mx-auto py-2 sm:py-3 flex items-center justify-between px-2 sm:px-4 md:px-15'>
 					{/* Logo */}
 					<motion.div
@@ -53,7 +53,9 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 							alt='Logo FMC'
 							width={60}
 							height={35}
-							className='object-contain drop-shadow-[0_0_15px_rgba(0,217,255,0.8)] sm:w-[90px] sm:h-[50px]'
+							className={`object-contain sm:w-[90px] sm:h-[50px] ${
+								theme === 'dark' ? 'drop-shadow-[0_0_15px_rgba(0,217,255,0.8)]' : ''
+							}`}
 						/>
 					</motion.div>
 					{/* Desktop Navigation - Hidden on mobile */}
@@ -69,7 +71,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 									onClick={() => onSectionChange(section.id)}
 									whileHover={{ scale: 1.02 }}
 									whileTap={{ scale: 0.98 }}
-									className={`relative px-2 py-2 sm:px-3 sm:py-2 md:px-8 md:py-3 font-medium transition-all text-xs sm:text-sm md:text-base text-[#00d9ff] ${
+									className={`relative px-2 py-2 sm:px-3 sm:py-2 md:px-8 md:py-3 font-medium transition-all text-xs sm:text-sm md:text-base text-[var(--primary-cyan)] ${
 										activeSection === section.id ? 'opacity-100' : 'opacity-60 hover:opacity-100'
 									}`}
 								>
@@ -78,7 +80,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 									{activeSection === section.id && (
 										<motion.div
 											layoutId='activeTab'
-											className='absolute bottom-0 left-0 right-0 h-0.5 bg-[#00d9ff] shadow-[0_0_10px_rgba(0,217,255,0.8)]'
+											className='absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--primary-cyan)] shadow-[0_0_10px_rgba(0,217,255,0.8)]'
 											transition={{ type: 'spring', stiffness: 380, damping: 30 }}
 										/>
 									)}
@@ -92,7 +94,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 						download='Federico_Ciociano_Frontend.pdf'
 						whileHover={{ scale: 1.05 }}
 						whileTap={{ scale: 0.95 }}
-						className='hidden md:inline-block px-2 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2.5 border-2 border-[#00d9ff] text-[#00d9ff] font-medium text-xs sm:text-sm md:text-base hover:bg-[#00d9ff]/10 transition-all whitespace-nowrap'
+						className='hidden md:inline-block px-2 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2.5 border-2 border-[var(--primary-cyan)] text-[var(--primary-cyan)] font-medium text-xs sm:text-sm md:text-base hover:bg-[var(--primary-cyan)]/10 transition-all whitespace-nowrap'
 						title='Descargar CV'
 					>
 						Descargar CV
@@ -104,7 +106,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 						whileTap={{ scale: 0.9 }}
 						onClick={toggleTheme}
 						suppressHydrationWarning
-						className='hidden md:flex items-center justify-center w-10 h-10 ml-3 text-[#00d9ff] hover:bg-[#00d9ff]/10 rounded-full transition-all'
+						className='hidden md:flex items-center justify-center w-10 h-10 ml-3 text-[var(--primary-cyan)] hover:bg-[var(--primary-cyan)]/10 rounded-full transition-all'
 						aria-label='Cambiar tema'
 					>
 						{theme === 'dark' ? (
