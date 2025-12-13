@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState, FormEvent } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 import emailjs from '@emailjs/browser';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
@@ -51,6 +52,7 @@ const contactInfo = {
 };
 
 export default function ContactoSection() {
+	const { theme } = useTheme();
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -124,7 +126,11 @@ export default function ContactoSection() {
 				transition={{ duration: 0.5 }}
 				className='w-full max-w-4xl mx-auto px-4 py-8'
 			>
-				<h2 className='text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--primary-cyan)] mb-6 sm:mb-8 glow-text'>
+				<h2
+					className={`text-3xl md:text-4xl font-bold text-[var(--primary-cyan)] mb-8 ${
+						theme === 'dark' ? 'glow-text' : ''
+					}`}
+				>
 					Contacto
 				</h2>
 
@@ -134,7 +140,7 @@ export default function ContactoSection() {
 						initial={{ opacity: 0, x: -50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ delay: 0.2, duration: 0.5 }}
-						className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[var(--primary-cyan)]/30 p-4 sm:p-6 hover:border-[var(--primary-cyan)] transition-all'
+						className='bg-[var(--background-secondary)]/80 backdrop-blur-sm rounded-lg border border-[var(--primary-cyan)]/30 p-4 sm:p-6 hover:border-[var(--primary-cyan)] transition-all'
 					>
 						<h3 className='text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-3 sm:mb-4'>
 							Información de Contacto
@@ -224,7 +230,7 @@ export default function ContactoSection() {
 						initial={{ opacity: 0, x: 50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ delay: 0.3, duration: 0.5 }}
-						className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[var(--primary-cyan)]/30 p-4 sm:p-6 hover:border-[var(--primary-cyan)] transition-all'
+						className='bg-[var(--background-secondary)]/80 backdrop-blur-sm rounded-lg border border-[var(--primary-cyan)]/30 p-4 sm:p-6 hover:border-[var(--primary-cyan)] transition-all'
 					>
 						<h3 className='text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-3 sm:mb-4'>Redes Sociales</h3>
 
@@ -251,7 +257,7 @@ export default function ContactoSection() {
 					initial={{ opacity: 0, x: 50 }}
 					animate={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.3, duration: 0.5 }}
-					className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[var(--primary-cyan)]/30 p-4 sm:p-6 hover:border-[var(--primary-cyan)] transition-all mt-6 sm:mt-8'
+					className='bg-[var(--background-secondary)]/80 backdrop-blur-sm rounded-lg border border-[var(--primary-cyan)]/30 p-4 sm:p-6 hover:border-[var(--primary-cyan)] transition-all mt-6 sm:mt-8'
 				>
 					<h3 className='text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-3 sm:mb-4'>Envíame un mensaje</h3>
 
@@ -263,7 +269,7 @@ export default function ContactoSection() {
 						<div>
 							<label
 								htmlFor='name'
-								className='block text-sm font-medium text-gray-300 mb-1'
+								className='block text-sm font-medium text-[var(--text-primary)] mb-1'
 							>
 								Nombre
 							</label>
@@ -273,7 +279,7 @@ export default function ContactoSection() {
 								value={formData.name}
 								onChange={handleChange}
 								required
-								className='w-full px-4 py-2 bg-[#0a0e1a]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-white placeholder-gray-500'
+								className='w-full px-4 py-2 bg-[var(--background)]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-[var(--text-primary)] placeholder-gray-500'
 							/>
 						</div>
 
@@ -281,7 +287,7 @@ export default function ContactoSection() {
 						<div>
 							<label
 								htmlFor='email'
-								className='block text-sm font-medium text-gray-300 mb-1'
+								className='block text-sm font-medium text-[var(--text-primary)] mb-1'
 							>
 								Email
 							</label>
@@ -291,7 +297,7 @@ export default function ContactoSection() {
 								value={formData.email}
 								onChange={handleChange}
 								required
-								className='w-full px-4 py-2 bg-[#0a0e1a]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-white placeholder-gray-500'
+								className='w-full px-4 py-2 bg-[var(--background)]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-[var(--text-primary)] placeholder-gray-500'
 								placeholder='tu@email.com'
 							/>
 						</div>
@@ -299,7 +305,7 @@ export default function ContactoSection() {
 						<div>
 							<label
 								htmlFor='phone'
-								className='block text-sm font-medium text-gray-300 mb-1'
+								className='block text-sm font-medium text-[var(--text-primary)] mb-1'
 							>
 								Teléfono
 							</label>
@@ -310,7 +316,7 @@ export default function ContactoSection() {
 								onChange={(value) => setPhone(value || '')}
 								limitMaxLength={true}
 								smartCaret={true}
-								className='phone-input w-full px-4 py-2 bg-[#0a0e1a]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-[var(--primary-cyan)]'
+								className='w-full px-4 py-2 bg-[var(--background)]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-[var(--text-primary)] placeholder-gray-500'
 							/>
 						</div>
 
@@ -318,7 +324,7 @@ export default function ContactoSection() {
 						<div>
 							<label
 								htmlFor='message'
-								className='block text-sm font-medium text-gray-700 mb-1'
+								className='block text-sm font-medium text-[var(--text-primary)] mb-1'
 							>
 								Mensaje
 							</label>
@@ -328,7 +334,7 @@ export default function ContactoSection() {
 								value={formData.message}
 								onChange={handleChange}
 								required
-								className='w-full px-4 py-2 bg-[#0a0e1a]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-white placeholder-gray-500'
+								className='w-full px-4 py-2 bg-[var(--background)]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-[var(--text-primary)] placeholder-gray-500'
 								placeholder='Escribe tu mensaje aquí...'
 							/>
 						</div>
@@ -364,7 +370,7 @@ export default function ContactoSection() {
 								isSubmitting
 									? 'bg-gray-600 cursor-not-allowed'
 									: 'bg-[var(--primary-cyan)] hover:bg-[#00b8d4] shadow-[0_0_20px_rgba(0,217,255,0.3)]'
-							} text-[#0a0e1a] font-bold`}
+							} text-[var(--background)] font-bold`}
 						>
 							{isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
 						</motion.button>
