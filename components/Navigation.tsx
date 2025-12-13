@@ -108,7 +108,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 						whileTap={{ scale: 0.9 }}
 						onClick={toggleTheme}
 						suppressHydrationWarning
-						className='hidden md:flex items-center justify-center w-10 h-10 ml-3 text-[var(--primary-cyan)] hover:bg-[var(--primary-cyan)]/10 rounded-full transition-all'
+						className='md:flex items-center justify-center w-10 h-10 ml-3 text-[var(--primary-cyan)] hover:bg-[var(--primary-cyan)]/10 rounded-full transition-all'
 						aria-label='Cambiar tema'
 					>
 						{theme === 'dark' ? (
@@ -153,15 +153,15 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 					>
 						<motion.span
 							animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-							className='w-6 h-0.5 bg-[var(--primary-cyan)] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
+							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''}`}
 						/>
 						<motion.span
 							animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-							className='w-6 h-0.5 bg-[var(--primary-cyan)] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
+							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''}`}
 						/>
 						<motion.span
 							animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-							className='w-6 h-0.5 bg-[var(--primary-cyan)] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
+							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''}`}
 						/>
 					</motion.button>
 				</div>
@@ -187,7 +187,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 							animate={{ x: 0 }}
 							exit={{ x: '100%' }}
 							transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-							className='fixed right-0 top-0 h-full w-[280px] bg-[#0a0e1a] border-l border-[var(--primary-cyan)]/30 shadow-[-10px_0_30px_rgba(0,217,255,0.2)] md:hidden overflow-y-auto z-[101]'
+							className='fixed right-0 top-0 h-full w-[280px] bg-[var(--background)] border-l border-[var(--primary-cyan)]/30 shadow-[-10px_0_30px_rgba(0,217,255,0.2)] md:hidden overflow-y-auto z-[101]'
 						>
 							<div className='flex flex-col h-full py-20 px-6'>
 								{/* Close button */}

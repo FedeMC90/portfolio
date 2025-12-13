@@ -47,7 +47,12 @@ export default function HomeSection() {
 						theme === 'dark' ? 'glow-text' : ''
 					}`}
 				>
-					FEDERICO MATIAS CIOCIANO // FULLSTACK DEVELOPER
+					<span className='md:hidden'>
+						FEDERICO MATIAS CIOCIANO
+						<br />
+						FULLSTACK DEVELOPER
+					</span>
+					<span className='hidden md:inline'>FEDERICO MATIAS CIOCIANO // FULLSTACK DEVELOPER</span>
 				</h1>
 				<p
 					suppressHydrationWarning
@@ -68,9 +73,7 @@ export default function HomeSection() {
 					transition={{ delay: 0.3, duration: 0.5 }}
 					className='text-center'
 				>
-					<p
-						className='text-sm sm:text-base md:text-xl leading-relaxed max-w-3xl mx-auto text-[var(--text-primary)]'
-					>
+					<p className='text-sm sm:text-base md:text-xl leading-relaxed max-w-3xl mx-auto text-[var(--text-primary)]'>
 						Transformo requisitos complejos en experiencias web fluidas y escalables. Especialista en crear interfaces
 						de alto rendimiento con Angular y React, respaldadas por APIs robustas con Node.js y bases de datos
 						eficientes como MongoDB y PostgreSQL. <br />
