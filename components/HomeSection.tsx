@@ -23,8 +23,8 @@ export default function HomeSection() {
 				whileHover={{ scale: 1.05 }}
 				transition={{ type: 'spring', stiffness: 300 }}
 				suppressHydrationWarning
-				style={{ borderColor: 'var(--primary-cyan)' }}
-				className={`relative w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full overflow-hidden border-4 ${
+				// style={{ borderColor: 'var(--primary-cyan)' }}
+				className={`relative w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-[var(--primary-cyan)] ${
 					theme === 'dark' ? 'shadow-[0_0_30px_rgba(0,217,255,0.5)]' : ''
 				}  mb-4 sm:mb-6`}
 			>
@@ -51,9 +51,10 @@ export default function HomeSection() {
 				</h1>
 				<p
 					suppressHydrationWarning
-					className={`inline-block text-base sm:text-lg md:text-2xl mt-2 text-[var(--accent)] ${
-						theme === 'dark' ? '' : 'bg-[var(--primary-cyan)] py-3 px-7 rounded-full'
-					}`}
+					// className={`inline-block text-base sm:text-lg md:text-3xl mt-2 text-[var(--accent)] ${
+					// 	theme === 'dark' ? '' : 'bg-[var(--primary-cyan)] py-3 px-7 rounded-full'
+					// }`}
+					className='inline-block text-base sm:text-lg md:text-3xl mt-2 text-[var(--primary-cyan)]'
 				>
 					SOLUCIONES SENCILLAS A SITUACIONES COMPLEJAS
 				</p>
@@ -68,8 +69,7 @@ export default function HomeSection() {
 					className='text-center'
 				>
 					<p
-						className='text-sm sm:text-base md:text-xl leading-relaxed max-w-3xl mx-auto'
-						style={{ color: 'var(--text-secondary)' }}
+						className='text-sm sm:text-base md:text-xl leading-relaxed max-w-3xl mx-auto text-[var(--text-primary)]'
 					>
 						Transformo requisitos complejos en experiencias web fluidas y escalables. Especialista en crear interfaces
 						de alto rendimiento con Angular y React, respaldadas por APIs robustas con Node.js y bases de datos

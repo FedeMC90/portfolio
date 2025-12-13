@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useTheme } from '@/contexts/ThemeContext';
 
 /**
  * Componente ExperienciaSection - Sección de experiencia laboral
@@ -73,6 +74,8 @@ const experiencias = [
 ];
 
 export default function ExperienciaSection() {
+	const { theme } = useTheme();
+
 	return (
 		<motion.section
 			initial={{ opacity: 0, y: 50 }}
@@ -81,7 +84,13 @@ export default function ExperienciaSection() {
 			transition={{ duration: 0.5 }}
 			className='w-full max-w-4xl mx-auto px-4 py-8'
 		>
-			<h2 className='text-3xl md:text-4xl font-bold text-[#00d9ff] mb-8 glow-text'>Experiencia Laboral</h2>
+			<h2
+				className={`text-3xl md:text-4xl font-bold text-[var(--primary-cyan)] mb-8 ${
+					theme === 'dark' ? 'glow-text' : ''
+				}`}
+			>
+				Experiencia Laboral
+			</h2>
 
 			<div className='space-y-6'>
 				{experiencias.map((exp, index) => (
@@ -90,11 +99,11 @@ export default function ExperienciaSection() {
 						initial={{ opacity: 0, scale: 0.9 }}
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{ delay: index * 0.15, duration: 0.4 }}
-						className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[#00d9ff]/30 p-6 hover:border-[#00d9ff] transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,217,255,0.2)]'
+						className='bg-[var(--background-secondary)]/80 backdrop-blur-sm rounded-lg border border-[var(--primary-cyan)]/30 p-6 hover:border-[var(--primary-cyan)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,217,255,0.2)]'
 					>
 						<div className='flex items-start justify-between gap-3 sm:gap-4'>
 							<div className='flex-1'>
-								<h3 className='text-lg sm:text-xl font-bold text-[#e4e9f0] leading-tight'>{exp.cargo}</h3>
+								<h3 className='text-lg sm:text-xl font-bold text-[var(--text-primary)] leading-tight'>{exp.cargo}</h3>
 								{exp.link ? (
 									<a
 										href={exp.link}
@@ -105,7 +114,9 @@ export default function ExperienciaSection() {
 										{exp.empresa} 🔗
 									</a>
 								) : (
-									<p className='text-[#00d9ff] font-medium text-sm sm:text-base mt-1 sm:mt-2'>{exp.empresa}</p>
+									<p className='text-[var(--primary-cyan)] font-medium text-sm sm:text-base mt-1 sm:mt-2'>
+										{exp.empresa}
+									</p>
 								)}
 								<p className='text-gray-400 text-xs sm:text-sm mt-1'>{exp.periodo}</p>
 							</div>
@@ -122,9 +133,9 @@ export default function ExperienciaSection() {
 							{exp.logros.map((logro, idx) => (
 								<li
 									key={idx}
-									className='text-gray-300 text-sm sm:text-base flex items-start gap-2'
+									className='text-[var(--text-primary)] text-sm sm:text-base flex items-start gap-2'
 								>
-									<span className='text-[#00d9ff] mt-1 flex-shrink-0'>•</span>
+									<span className='text-[var(--primary-cyan)] mt-1 flex-shrink-0'>•</span>
 									<span>{logro}</span>
 								</li>
 							))}

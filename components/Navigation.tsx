@@ -80,7 +80,9 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 									{activeSection === section.id && (
 										<motion.div
 											layoutId='activeTab'
-											className='absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--primary-cyan)] shadow-[0_0_10px_rgba(0,217,255,0.8)]'
+											className={`absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--primary-cyan)] ${
+												theme === 'dark' ? 'shadow-[0_0_10px_rgba(0,217,255,0.8)]' : ''
+											}`}
 											transition={{ type: 'spring', stiffness: 380, damping: 30 }}
 										/>
 									)}
@@ -151,15 +153,15 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 					>
 						<motion.span
 							animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-							className='w-6 h-0.5 bg-[#00d9ff] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
+							className='w-6 h-0.5 bg-[var(--primary-cyan)] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
 						/>
 						<motion.span
 							animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-							className='w-6 h-0.5 bg-[#00d9ff] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
+							className='w-6 h-0.5 bg-[var(--primary-cyan)] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
 						/>
 						<motion.span
 							animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-							className='w-6 h-0.5 bg-[#00d9ff] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
+							className='w-6 h-0.5 bg-[var(--primary-cyan)] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
 						/>
 					</motion.button>
 				</div>
@@ -185,7 +187,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 							animate={{ x: 0 }}
 							exit={{ x: '100%' }}
 							transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-							className='fixed right-0 top-0 h-full w-[280px] bg-[#0a0e1a] border-l border-[#00d9ff]/30 shadow-[-10px_0_30px_rgba(0,217,255,0.2)] md:hidden overflow-y-auto z-[101]'
+							className='fixed right-0 top-0 h-full w-[280px] bg-[#0a0e1a] border-l border-[var(--primary-cyan)]/30 shadow-[-10px_0_30px_rgba(0,217,255,0.2)] md:hidden overflow-y-auto z-[101]'
 						>
 							<div className='flex flex-col h-full py-20 px-6'>
 								{/* Close button */}
@@ -193,7 +195,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 									whileHover={{ scale: 1.1, rotate: 90 }}
 									whileTap={{ scale: 0.9 }}
 									onClick={() => setIsMobileMenuOpen(false)}
-									className='absolute top-4 right-4 p-2 text-[#00d9ff]'
+									className='absolute top-4 right-4 p-2 text-[var(--primary-cyan)]'
 									aria-label='Cerrar menu'
 								>
 									<svg
@@ -222,8 +224,8 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 											onClick={() => handleMobileNavClick(section.id)}
 											className={`text-left py-3 px-4 rounded-lg transition-all ${
 												activeSection === section.id
-													? 'bg-[#00d9ff]/20 text-[#00d9ff] border-l-4 border-[#00d9ff]'
-													: 'text-[#00d9ff]/60 hover:bg-[#00d9ff]/10 hover:text-[#00d9ff] border-l-4 border-transparent'
+													? 'bg-[var(--primary-cyan)]/20 text-[var(--primary-cyan)] border-l-4 border-[var(--primary-cyan)]'
+													: 'text-[var(--primary-cyan)]/60 hover:bg-[var(--primary-cyan)]/10 hover:text-[var(--primary-cyan)] border-l-4 border-transparent'
 											}`}
 										>
 											<span className='font-medium text-base'>{section.label}</span>
@@ -239,7 +241,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 									href='/docs/Federico_Ciociano_Frontend.pdf'
 									download='Federico_Ciociano_Frontend.pdf'
 									onClick={() => setIsMobileMenuOpen(false)}
-									className='mt-auto py-3 px-6 border-2 border-[#00d9ff] text-[#00d9ff] font-bold text-center rounded-lg hover:bg-[#00d9ff]/10 transition-all shadow-[0_0_15px_rgba(0,217,255,0.3)]'
+									className='mt-auto py-3 px-6 border-2 border-[var(--primary-cyan)] text-[var(--primary-cyan)] font-bold text-center rounded-lg hover:bg-[var(--primary-cyan)]/10 transition-all shadow-[0_0_15px_rgba(0,217,255,0.3)]'
 								>
 									Descargar CV
 								</motion.a>

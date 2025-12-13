@@ -16,9 +16,9 @@
 /* Modo claro */
 :root:not(.dark) {
 	--background: #ececec;
-	--background-secondary: #c4c4c4;
+	--background-secondary: #ffffff96;
 	--primary-dark: #0284c7;
-	--accent: #ececec;	
+	--accent: #818181;
 	--border: rgba(2, 132, 199, 0.2);
 	--card-bg: rgba(255, 255, 255, 0.9);
 	--text-primary: #0a0e1a;

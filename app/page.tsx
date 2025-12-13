@@ -57,7 +57,7 @@ export default function Home() {
 				</main>
 
 				{/* Footer */}
-				<footer className='w-full bg-[#0a0e1a] border-t border-[#00d9ff]/20 text-[#e4e9f0] py-6 mt-auto'>
+				<footer className='w-full bg-[#0a0e1a] border-t border-[var(--primary-cyan)]/20 text-[var(--text-primary)] py-6 mt-auto'>
 					<div className='max-w-6xl mx-auto px-4 text-center'>
 						<p className='text-sm'>© 2025 FMC. Todos los derechos reservados.</p>
 					</div>
