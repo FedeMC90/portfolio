@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { useTheme } from '@/contexts/ThemeContext';
 
 /**
  * Componente EstudiosSection - Sección de formación académica
@@ -34,6 +35,8 @@ const estudios = [
 ];
 
 export default function EstudiosSection() {
+	const { theme } = useTheme();
+
 	return (
 		<motion.section
 			initial={{ opacity: 0, y: 50 }}
@@ -42,7 +45,13 @@ export default function EstudiosSection() {
 			transition={{ duration: 0.5 }}
 			className='w-full max-w-4xl mx-auto px-4 py-8'
 		>
-			<h2 className='text-3xl md:text-4xl font-bold text-[var(--primary-cyan)] mb-8 glow-text'>Formación Académica</h2>
+			<h2
+				className={`text-3xl md:text-4xl font-bold text-[var(--primary-cyan)] mb-8 ${
+					theme === 'dark' ? 'glow-text' : ''
+				}`}
+			>
+				Formación Académica
+			</h2>
 
 			<div className='space-y-6'>
 				{estudios.map((estudio, index) => (
@@ -51,7 +60,7 @@ export default function EstudiosSection() {
 						initial={{ opacity: 0, scale: 0.9 }}
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{ delay: index * 0.15, duration: 0.4 }}
-						className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[var(--primary-cyan)]/30 p-6 hover:border-[var(--primary-cyan)] transition-all hover:shadow-[0_0_30px_rgba(0,217,255,0.2)]'
+						className='bg-[var(--background-secondary)]/80 backdrop-blur-sm rounded-lg border border-[var(--primary-cyan)]/30 p-6 hover:border-[var(--primary-cyan)] transition-all hover:shadow-[0_0_30px_rgba(0,217,255,0.2)]'
 					>
 						<div className='flex items-start justify-between gap-3 sm:gap-4'>
 							<div className='flex-1'>
@@ -78,7 +87,7 @@ export default function EstudiosSection() {
 							{estudio.descripcion.map((description, idx) => (
 								<li
 									key={idx}
-									className='text-gray-300 text-sm sm:text-base flex items-start gap-2'
+									className='text-[var(--text-primary)] text-sm sm:text-base flex items-start gap-2'
 								>
 									<span className='text-[var(--primary-cyan)] mt-1 flex-shrink-0'>•</span>
 									<span>{description}</span>
