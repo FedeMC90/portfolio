@@ -112,10 +112,10 @@ Este proyecto es de código abierto y está disponible bajo la licencia MIT.
 
 ## 👤 Autor
 
-**Federico MC**
+**Federico Matias Ciociano**
 
 - GitHub: [@FedeMC90](https://github.com/FedeMC90)
 
 ---
 
-⭐ Si te ha gustado este proyecto, no olvides darle una estrella en GitHub!
+⭐ Si te gustó este proyecto, no olvides darle una estrella en GitHub!

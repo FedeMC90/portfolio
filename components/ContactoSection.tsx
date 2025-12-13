@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState, FormEvent } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 import emailjs from '@emailjs/browser';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
@@ -51,6 +52,7 @@ const contactInfo = {
 };
 
 export default function ContactoSection() {
+	const { theme } = useTheme();
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -110,9 +112,9 @@ export default function ContactoSection() {
 					exit={{ opacity: 0 }}
 					className='fixed inset-0 bg-gray-900/30 backdrop-blur-sm flex items-center justify-center z-50'
 				>
-					<div className='bg-[#141b2d] border border-[#00d9ff]/50 rounded-lg p-8 flex flex-col items-center gap-4 shadow-[0_0_30px_rgba(0,217,255,0.3)]'>
-						<div className='w-16 h-16 border-4 border-[#00d9ff] border-t-transparent rounded-full animate-spin'></div>
-						<p className='text-[#00d9ff] font-medium'>Enviando mensaje...</p>
+					<div className='bg-[#141b2d] border border-[var(--primary-cyan)]/50 rounded-lg p-8 flex flex-col items-center gap-4 shadow-[0_0_30px_rgba(0,217,255,0.3)]'>
+						<div className='w-16 h-16 border-4 border-[var(--primary-cyan)] border-t-transparent rounded-full animate-spin'></div>
+						<p className='text-[var(--primary-cyan)] font-medium'>Enviando mensaje...</p>
 					</div>
 				</motion.div>
 			)}
@@ -124,7 +126,13 @@ export default function ContactoSection() {
 				transition={{ duration: 0.5 }}
 				className='w-full max-w-4xl mx-auto px-4 py-8'
 			>
-				<h2 className='text-2xl sm:text-3xl md:text-4xl font-bold text-[#00d9ff] mb-6 sm:mb-8 glow-text'>Contacto</h2>
+				<h2
+					className={`text-3xl md:text-4xl font-bold text-[var(--primary-cyan)] mb-8 ${
+						theme === 'dark' ? 'glow-text' : ''
+					}`}
+				>
+					Contacto
+				</h2>
 
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8'>
 					{/* Información de contacto */}
@@ -132,19 +140,21 @@ export default function ContactoSection() {
 						initial={{ opacity: 0, x: -50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ delay: 0.2, duration: 0.5 }}
-						className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[#00d9ff]/30 p-4 sm:p-6 hover:border-[#00d9ff] transition-all'
+						className='bg-[var(--background-secondary)]/80 backdrop-blur-sm rounded-lg border border-[var(--primary-cyan)]/30 p-4 sm:p-6 hover:border-[var(--primary-cyan)] transition-all'
 					>
-						<h3 className='text-lg sm:text-xl font-bold text-[#e4e9f0] mb-3 sm:mb-4'>Información de Contacto</h3>
+						<h3 className='text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-3 sm:mb-4'>
+							Información de Contacto
+						</h3>
 
 						<div className='space-y-3'>
 							{/* Email */}
 							<motion.a
 								href={`mailto:${contactInfo.email}`}
 								whileHover={{ scale: 1.05, x: 10 }}
-								className='flex items-center gap-3 p-2 pl-4 rounded-lg hover:bg-[#00d9ff]/10 transition-colors border border-transparent hover:border-[#00d9ff]/30'
+								className='flex items-center gap-3 p-2 pl-4 rounded-lg hover:bg-[var(--primary-cyan)]/10 transition-colors border border-transparent hover:border-[var(--primary-cyan)]/30'
 							>
 								<svg
-									className='w-6 h-6 text-[#00d9ff]'
+									className='w-6 h-6 text-[var(--primary-cyan)]'
 									fill='none'
 									stroke='currentColor'
 									viewBox='0 0 24 24'
@@ -158,7 +168,7 @@ export default function ContactoSection() {
 								</svg>
 								<div>
 									<p className='text-sm text-gray-400'>Email</p>
-									<p className='text-[#00d9ff]'>{contactInfo.email}</p>
+									<p className='text-[var(--primary-cyan)]'>{contactInfo.email}</p>
 								</div>
 							</motion.a>
 
@@ -168,10 +178,10 @@ export default function ContactoSection() {
 								target='_blank'
 								rel='noopener noreferrer'
 								whileHover={{ scale: 1.05, x: 10 }}
-								className='flex items-center gap-3 p-2 pl-4 rounded-lg hover:bg-[#00d9ff]/10 transition-colors border border-transparent hover:border-[#00d9ff]/30'
+								className='flex items-center gap-3 p-2 pl-4 rounded-lg hover:bg-[var(--primary-cyan)]/10 transition-colors border border-transparent hover:border-[var(--primary-cyan)]/30'
 							>
 								<svg
-									className='w-6 h-6 text-[#00d9ff]'
+									className='w-6 h-6 text-[var(--primary-cyan)]'
 									fill='none'
 									stroke='currentColor'
 									viewBox='0 0 24 24'
@@ -185,14 +195,14 @@ export default function ContactoSection() {
 								</svg>
 								<div>
 									<p className='text-sm text-gray-400'>Teléfono</p>
-									<p className='text-[#00d9ff]'>{contactInfo.telefono}</p>
+									<p className='text-[var(--primary-cyan)]'>{contactInfo.telefono}</p>
 								</div>
 							</motion.a>
 
 							{/* Ubicación */}
 							<div className='flex items-center gap-3 pl-4'>
 								<svg
-									className='w-6 h-6 text-[#00d9ff]'
+									className='w-6 h-6 text-[var(--primary-cyan)]'
 									fill='none'
 									stroke='currentColor'
 									viewBox='0 0 24 24'
@@ -220,9 +230,9 @@ export default function ContactoSection() {
 						initial={{ opacity: 0, x: 50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ delay: 0.3, duration: 0.5 }}
-						className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[#00d9ff]/30 p-4 sm:p-6 hover:border-[#00d9ff] transition-all'
+						className='bg-[var(--background-secondary)]/80 backdrop-blur-sm rounded-lg border border-[var(--primary-cyan)]/30 p-4 sm:p-6 hover:border-[var(--primary-cyan)] transition-all'
 					>
-						<h3 className='text-lg sm:text-xl font-bold text-[#e4e9f0] mb-3 sm:mb-4'>Redes Sociales</h3>
+						<h3 className='text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-3 sm:mb-4'>Redes Sociales</h3>
 
 						<div className='space-y-3'>
 							{contactInfo.redesSociales.map((red, index) => (
@@ -232,10 +242,10 @@ export default function ContactoSection() {
 									target='_blank'
 									rel='noopener noreferrer'
 									whileHover={{ scale: 1.05, x: 10 }}
-									className='flex items-center gap-3 p-3 pl-6 rounded-lg hover:bg-[#00d9ff]/10 transition-colors border border-transparent hover:border-[#00d9ff]/30'
+									className='flex items-center gap-3 p-3 pl-6 rounded-lg hover:bg-[var(--primary-cyan)]/10 transition-colors border border-transparent hover:border-[var(--primary-cyan)]/30'
 								>
-									<span className='text-[#00d9ff]'>{red.icon}</span>
-									<span className='text-[#e4e9f0] font-medium'>{red.name}</span>
+									<span className='text-[var(--primary-cyan)]'>{red.icon}</span>
+									<span className='text-[var(--text-primary)] font-medium'>{red.name}</span>
 								</motion.a>
 							))}
 						</div>
@@ -247,9 +257,9 @@ export default function ContactoSection() {
 					initial={{ opacity: 0, x: 50 }}
 					animate={{ opacity: 1, x: 0 }}
 					transition={{ delay: 0.3, duration: 0.5 }}
-					className='bg-[#141b2d]/80 backdrop-blur-sm rounded-lg border border-[#00d9ff]/30 p-4 sm:p-6 hover:border-[#00d9ff] transition-all mt-6 sm:mt-8'
+					className='bg-[var(--background-secondary)]/80 backdrop-blur-sm rounded-lg border border-[var(--primary-cyan)]/30 p-4 sm:p-6 hover:border-[var(--primary-cyan)] transition-all mt-6 sm:mt-8'
 				>
-					<h3 className='text-lg sm:text-xl font-bold text-[#e4e9f0] mb-3 sm:mb-4'>Envíame un mensaje</h3>
+					<h3 className='text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-3 sm:mb-4'>Envíame un mensaje</h3>
 
 					<form
 						onSubmit={handleSubmit}
@@ -259,7 +269,7 @@ export default function ContactoSection() {
 						<div>
 							<label
 								htmlFor='name'
-								className='block text-sm font-medium text-gray-300 mb-1'
+								className='block text-sm font-medium text-[var(--text-primary)] mb-1'
 							>
 								Nombre
 							</label>
@@ -269,7 +279,7 @@ export default function ContactoSection() {
 								value={formData.name}
 								onChange={handleChange}
 								required
-								className='w-full px-4 py-2 bg-[#0a0e1a]/50 border border-[#00d9ff]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00d9ff] text-white placeholder-gray-500'
+								className='w-full px-4 py-2 bg-[var(--background)]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-[var(--text-primary)] placeholder-gray-500'
 							/>
 						</div>
 
@@ -277,7 +287,7 @@ export default function ContactoSection() {
 						<div>
 							<label
 								htmlFor='email'
-								className='block text-sm font-medium text-gray-300 mb-1'
+								className='block text-sm font-medium text-[var(--text-primary)] mb-1'
 							>
 								Email
 							</label>
@@ -287,7 +297,7 @@ export default function ContactoSection() {
 								value={formData.email}
 								onChange={handleChange}
 								required
-								className='w-full px-4 py-2 bg-[#0a0e1a]/50 border border-[#00d9ff]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00d9ff] text-white placeholder-gray-500'
+								className='w-full px-4 py-2 bg-[var(--background)]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-[var(--text-primary)] placeholder-gray-500'
 								placeholder='tu@email.com'
 							/>
 						</div>
@@ -295,7 +305,7 @@ export default function ContactoSection() {
 						<div>
 							<label
 								htmlFor='phone'
-								className='block text-sm font-medium text-gray-300 mb-1'
+								className='block text-sm font-medium text-[var(--text-primary)] mb-1'
 							>
 								Teléfono
 							</label>
@@ -306,7 +316,7 @@ export default function ContactoSection() {
 								onChange={(value) => setPhone(value || '')}
 								limitMaxLength={true}
 								smartCaret={true}
-								className='phone-input w-full px-4 py-2 bg-[#0a0e1a]/50 border border-[#00d9ff]/30 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-[#00d9ff]'
+								className='w-full px-4 py-2 bg-[var(--background)]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-[var(--text-primary)] placeholder-gray-500'
 							/>
 						</div>
 
@@ -314,7 +324,7 @@ export default function ContactoSection() {
 						<div>
 							<label
 								htmlFor='message'
-								className='block text-sm font-medium text-gray-700 mb-1'
+								className='block text-sm font-medium text-[var(--text-primary)] mb-1'
 							>
 								Mensaje
 							</label>
@@ -324,7 +334,7 @@ export default function ContactoSection() {
 								value={formData.message}
 								onChange={handleChange}
 								required
-								className='w-full px-4 py-2 bg-[#0a0e1a]/50 border border-[#00d9ff]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00d9ff] text-white placeholder-gray-500'
+								className='w-full px-4 py-2 bg-[var(--background)]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-[var(--text-primary)] placeholder-gray-500'
 								placeholder='Escribe tu mensaje aquí...'
 							/>
 						</div>
@@ -359,8 +369,8 @@ export default function ContactoSection() {
 							className={`w-full px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg font-medium text-sm sm:text-base transition-colors ${
 								isSubmitting
 									? 'bg-gray-600 cursor-not-allowed'
-									: 'bg-[#00d9ff] hover:bg-[#00b8d4] shadow-[0_0_20px_rgba(0,217,255,0.3)]'
-							} text-[#0a0e1a] font-bold`}
+									: 'bg-[var(--primary-cyan)] hover:bg-[#00b8d4] shadow-[0_0_20px_rgba(0,217,255,0.3)]'
+							} text-[var(--background)] font-bold`}
 						>
 							{isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
 						</motion.button>

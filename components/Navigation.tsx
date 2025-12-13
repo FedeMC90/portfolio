@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 /**
  * Componente Navigation - Barra de navegación con botones
@@ -27,6 +28,7 @@ const sections = [
 
 export default function Navigation({ activeSection, onSectionChange }: NavigationProps) {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const { theme, toggleTheme } = useTheme();
 
 	const handleMobileNavClick = (sectionId: string) => {
 		onSectionChange(sectionId);
@@ -35,7 +37,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 
 	return (
 		<>
-			<nav className='fixed top-0 left-0 right-0 z-50 w-full bg-[#0a0e1a]/90 backdrop-blur-lg border-b border-[#00d9ff]/10'>
+			<nav className='fixed top-0 left-0 right-0 z-50 w-full bg-[var(--background)]/90 dark:bg-[var(--background)]/90 bg-white/90 backdrop-blur-lg border-b border-[var(--primary-cyan)]/10 dark:border-[var(--primary-cyan)]/10 border-[var(--primary-dark)]/20'>
 				<div className='max-w-8xl mx-auto py-2 sm:py-3 flex items-center justify-between px-2 sm:px-4 md:px-15'>
 					{/* Logo */}
 					<motion.div
@@ -51,10 +53,11 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 							alt='Logo FMC'
 							width={60}
 							height={35}
-							className='object-contain drop-shadow-[0_0_15px_rgba(0,217,255,0.8)] sm:w-[90px] sm:h-[50px]'
+							className={`object-contain sm:w-[90px] sm:h-[50px] ${
+								theme === 'dark' ? 'drop-shadow-[0_0_15px_rgba(0,217,255,0.8)]' : ''
+							}`}
 						/>
 					</motion.div>
-
 					{/* Desktop Navigation - Hidden on mobile */}
 					<ul className='hidden md:flex flex-wrap justify-center gap-0.5 sm:gap-1 md:gap-2 flex-1 mx-2'>
 						{sections.map((section, index) => (
@@ -68,7 +71,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 									onClick={() => onSectionChange(section.id)}
 									whileHover={{ scale: 1.02 }}
 									whileTap={{ scale: 0.98 }}
-									className={`relative px-2 py-2 sm:px-3 sm:py-2 md:px-8 md:py-3 font-medium transition-all text-xs sm:text-sm md:text-base text-[#00d9ff] ${
+									className={`relative px-2 py-2 sm:px-3 sm:py-2 md:px-8 md:py-3 font-medium transition-all text-xs sm:text-sm md:text-base text-[var(--primary-cyan)] ${
 										activeSection === section.id ? 'opacity-100' : 'opacity-60 hover:opacity-100'
 									}`}
 								>
@@ -77,7 +80,9 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 									{activeSection === section.id && (
 										<motion.div
 											layoutId='activeTab'
-											className='absolute bottom-0 left-0 right-0 h-0.5 bg-[#00d9ff] shadow-[0_0_10px_rgba(0,217,255,0.8)]'
+											className={`absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--primary-cyan)] ${
+												theme === 'dark' ? 'shadow-[0_0_10px_rgba(0,217,255,0.8)]' : ''
+											}`}
 											transition={{ type: 'spring', stiffness: 380, damping: 30 }}
 										/>
 									)}
@@ -85,19 +90,59 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 							</motion.li>
 						))}
 					</ul>
-
 					{/* Botón Descargar CV - Desktop only */}
 					<motion.a
 						href='/docs/Federico_Ciociano_Frontend.pdf'
 						download='Federico_Ciociano_Frontend.pdf'
 						whileHover={{ scale: 1.05 }}
 						whileTap={{ scale: 0.95 }}
-						className='hidden md:inline-block px-2 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2.5 border-2 border-[#00d9ff] text-[#00d9ff] font-medium text-xs sm:text-sm md:text-base hover:bg-[#00d9ff]/10 transition-all whitespace-nowrap'
+						className='hidden md:inline-block px-2 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2.5 border-2 border-[var(--primary-cyan)] text-[var(--primary-cyan)] font-medium text-xs sm:text-sm md:text-base hover:bg-[var(--primary-cyan)]/10 transition-all whitespace-nowrap'
 						title='Descargar CV'
 					>
 						Descargar CV
 					</motion.a>
-
+					{/* Theme Toggle Button - Desktop only */}
+					<motion.button
+						key={theme}
+						whileHover={{ scale: 1.1, rotate: 15 }}
+						whileTap={{ scale: 0.9 }}
+						onClick={toggleTheme}
+						suppressHydrationWarning
+						className='md:flex items-center justify-center w-10 h-10 ml-3 text-[var(--primary-cyan)] hover:bg-[var(--primary-cyan)]/10 rounded-full transition-all'
+						aria-label='Cambiar tema'
+					>
+						{theme === 'dark' ? (
+							// Sol para modo oscuro
+							<svg
+								className='w-6 h-6'
+								fill='none'
+								stroke='currentColor'
+								viewBox='0 0 24 24'
+							>
+								<path
+									strokeLinecap='round'
+									strokeLinejoin='round'
+									strokeWidth={2}
+									d='M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z'
+								/>
+							</svg>
+						) : (
+							// Luna para modo claro
+							<svg
+								className='w-6 h-6'
+								fill='none'
+								stroke='currentColor'
+								viewBox='0 0 24 24'
+							>
+								<path
+									strokeLinecap='round'
+									strokeLinejoin='round'
+									strokeWidth={2}
+									d='M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'
+								/>
+							</svg>
+						)}
+					</motion.button>{' '}
 					{/* Hamburger Menu Button - Mobile only */}
 					<motion.button
 						whileHover={{ scale: 1.1 }}
@@ -108,15 +153,15 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 					>
 						<motion.span
 							animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-							className='w-6 h-0.5 bg-[#00d9ff] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
+							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''}`}
 						/>
 						<motion.span
 							animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-							className='w-6 h-0.5 bg-[#00d9ff] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
+							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''}`}
 						/>
 						<motion.span
 							animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-							className='w-6 h-0.5 bg-[#00d9ff] block shadow-[0_0_5px_rgba(0,217,255,0.8)]'
+							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''}`}
 						/>
 					</motion.button>
 				</div>
@@ -142,7 +187,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 							animate={{ x: 0 }}
 							exit={{ x: '100%' }}
 							transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-							className='fixed right-0 top-0 h-full w-[280px] bg-[#0a0e1a] border-l border-[#00d9ff]/30 shadow-[-10px_0_30px_rgba(0,217,255,0.2)] md:hidden overflow-y-auto z-[101]'
+							className='fixed right-0 top-0 h-full w-[280px] bg-[var(--background)] border-l border-[var(--primary-cyan)]/30 shadow-[-10px_0_30px_rgba(0,217,255,0.2)] md:hidden overflow-y-auto z-[101]'
 						>
 							<div className='flex flex-col h-full py-20 px-6'>
 								{/* Close button */}
@@ -150,7 +195,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 									whileHover={{ scale: 1.1, rotate: 90 }}
 									whileTap={{ scale: 0.9 }}
 									onClick={() => setIsMobileMenuOpen(false)}
-									className='absolute top-4 right-4 p-2 text-[#00d9ff]'
+									className='absolute top-4 right-4 p-2 text-[var(--primary-cyan)]'
 									aria-label='Cerrar menu'
 								>
 									<svg
@@ -179,8 +224,8 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 											onClick={() => handleMobileNavClick(section.id)}
 											className={`text-left py-3 px-4 rounded-lg transition-all ${
 												activeSection === section.id
-													? 'bg-[#00d9ff]/20 text-[#00d9ff] border-l-4 border-[#00d9ff]'
-													: 'text-[#00d9ff]/60 hover:bg-[#00d9ff]/10 hover:text-[#00d9ff] border-l-4 border-transparent'
+													? 'bg-[var(--primary-cyan)]/20 text-[var(--primary-cyan)] border-l-4 border-[var(--primary-cyan)]'
+													: 'text-[var(--primary-cyan)]/60 hover:bg-[var(--primary-cyan)]/10 hover:text-[var(--primary-cyan)] border-l-4 border-transparent'
 											}`}
 										>
 											<span className='font-medium text-base'>{section.label}</span>
@@ -196,7 +241,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 									href='/docs/Federico_Ciociano_Frontend.pdf'
 									download='Federico_Ciociano_Frontend.pdf'
 									onClick={() => setIsMobileMenuOpen(false)}
-									className='mt-auto py-3 px-6 border-2 border-[#00d9ff] text-[#00d9ff] font-bold text-center rounded-lg hover:bg-[#00d9ff]/10 transition-all shadow-[0_0_15px_rgba(0,217,255,0.3)]'
+									className='mt-auto py-3 px-6 border-2 border-[var(--primary-cyan)] text-[var(--primary-cyan)] font-bold text-center rounded-lg hover:bg-[var(--primary-cyan)]/10 transition-all shadow-[0_0_15px_rgba(0,217,255,0.3)]'
 								>
 									Descargar CV
 								</motion.a>

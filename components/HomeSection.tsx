@@ -1,12 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useTheme } from '@/contexts/ThemeContext';
 
 /**
  * Componente HomeSection - Sección de inicio
  * Muestra el header con foto de perfil y presentación
  */
 export default function HomeSection() {
+	const { theme } = useTheme();
+
 	return (
 		<motion.section
 			initial={{ opacity: 0, y: 50 }}
@@ -19,7 +22,11 @@ export default function HomeSection() {
 			<motion.div
 				whileHover={{ scale: 1.05 }}
 				transition={{ type: 'spring', stiffness: 300 }}
-				className='relative w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-[#00d9ff] shadow-[0_0_30px_rgba(0,217,255,0.5)] mb-4 sm:mb-6'
+				suppressHydrationWarning
+				// style={{ borderColor: 'var(--primary-cyan)' }}
+				className={`relative w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-[var(--primary-cyan)] ${
+					theme === 'dark' ? 'shadow-[0_0_30px_rgba(0,217,255,0.5)]' : ''
+				}  mb-4 sm:mb-6`}
 			>
 				<video
 					src='/images/profile_video.mp4'
@@ -31,13 +38,30 @@ export default function HomeSection() {
 				/>
 			</motion.div>
 
-			<div className='max-w-6xl mx-auto text-center w-full px-2'>
+			<div className='mx-auto text-center w-full px-2'>
 				{/* Nombre y título */}
-				<h1 className='text-2xl sm:text-3xl md:text-4xl text-white glow-text text-center leading-tight'>
-					FEDERICO MATIAS CIOCIANO // FULLSTACK DEVELOPER
+				<h1
+					suppressHydrationWarning
+					style={{ color: 'var(--text-primary)' }}
+					className={`text-2xl sm:text-3xl md:text-5xl text-center leading-tight ${
+						theme === 'dark' ? 'glow-text' : ''
+					}`}
+				>
+					<span className='md:hidden'>
+						FEDERICO MATIAS CIOCIANO
+						<br />
+						FULLSTACK DEVELOPER
+					</span>
+					<span className='hidden md:inline'>FEDERICO MATIAS CIOCIANO // FULLSTACK DEVELOPER</span>
 				</h1>
-				<p className='text-base sm:text-lg md:text-xl text-[#00d9ff] mt-2 font-light text-center'>
-					Soluciones sencillas para problemas complejos
+				<p
+					suppressHydrationWarning
+					// className={`inline-block text-base sm:text-lg md:text-3xl mt-2 text-[var(--accent)] ${
+					// 	theme === 'dark' ? '' : 'bg-[var(--primary-cyan)] py-3 px-7 rounded-full'
+					// }`}
+					className='inline-block text-base sm:text-lg md:text-3xl mt-2 text-[var(--primary-cyan)]'
+				>
+					SOLUCIONES SENCILLAS A SITUACIONES COMPLEJAS
 				</p>
 			</div>
 
@@ -49,7 +73,7 @@ export default function HomeSection() {
 					transition={{ delay: 0.3, duration: 0.5 }}
 					className='text-center'
 				>
-					<p className='text-sm sm:text-base md:text-lg text-[#e4e9f0] leading-relaxed max-w-3xl mx-auto'>
+					<p className='text-sm sm:text-base md:text-xl leading-relaxed max-w-3xl mx-auto text-[var(--text-primary)]'>
 						Transformo requisitos complejos en experiencias web fluidas y escalables. Especialista en crear interfaces
 						de alto rendimiento con Angular y React, respaldadas por APIs robustas con Node.js y bases de datos
 						eficientes como MongoDB y PostgreSQL. <br />
