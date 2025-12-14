@@ -2,12 +2,12 @@
 
 import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import Navigation from '@/components/Navigation';
-import HomeSection from '@/components/HomeSection';
-import ExperienciaSection from '@/components/ExperienciaSection';
-import EstudiosSection from '@/components/EstudiosSection';
-import ProyectosSection from '@/components/ProyectosSection';
-import ContactoSection from '@/components/ContactoSection';
+import Navigation from '@/components/Navigation/Navigation';
+import HomeSection from '@/components/HomeSection/HomeSection';
+import ExperienceSection from '@/components/ExperienceSection/ExperienceSection';
+import EducationSection from '@/components/EducationSection/EducationSection';
+import ProjectsSection from '@/components/ProjectsSection/ProjectsSection';
+import ContactSection from '@/components/ContactSection/ContactSection';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 
 /**
@@ -30,13 +30,13 @@ export default function Home() {
 			case 'home':
 				return <HomeSection key='home' />;
 			case 'experiencia':
-				return <ExperienciaSection key='experiencia' />;
+				return <ExperienceSection key='experiencia' />;
 			case 'estudios':
-				return <EstudiosSection key='estudios' />;
+				return <EducationSection key='estudios' />;
 			case 'proyectos':
-				return <ProyectosSection key='proyectos' />;
+				return <ProjectsSection key='proyectos' />;
 			case 'contacto':
-				return <ContactoSection key='contacto' />;
+				return <ContactSection key='contacto' />;
 			default:
 				return <HomeSection key='home' />;
 		}
