@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useTheme } from '@/contexts/ThemeContext';
+import { Card, SectionTitle } from '@/components/ui';
 
 /**
  * Componente ExperienciaSection - Sección de experiencia laboral
@@ -73,9 +73,7 @@ const experiencias = [
 	},
 ];
 
-export default function ExperienciaSection() {
-	const { theme } = useTheme();
-
+export default function ExperienceSection() {
 	return (
 		<motion.section
 			initial={{ opacity: 0, y: 50 }}
@@ -84,22 +82,13 @@ export default function ExperienciaSection() {
 			transition={{ duration: 0.5 }}
 			className='w-full max-w-4xl mx-auto px-4 py-8'
 		>
-			<h2
-				className={`text-3xl md:text-4xl font-bold text-[var(--primary-cyan)] mb-8 ${
-					theme === 'dark' ? 'glow-text' : ''
-				}`}
-			>
-				Experiencia Laboral
-			</h2>
+			<SectionTitle>Experiencia Laboral</SectionTitle>
 
 			<div className='space-y-6'>
 				{experiencias.map((exp, index) => (
-					<motion.div
+					<Card
 						key={exp.id}
-						initial={{ opacity: 0, scale: 0.9 }}
-						animate={{ opacity: 1, scale: 1 }}
-						transition={{ delay: index * 0.15, duration: 0.4 }}
-						className='bg-[var(--background-secondary)]/80 backdrop-blur-sm rounded-lg border border-[var(--primary-cyan)]/30 p-6 hover:border-[var(--primary-cyan)] transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,217,255,0.2)]'
+						delay={index * 0.15}
 					>
 						<div className='flex items-start justify-between gap-3 sm:gap-4'>
 							<div className='flex-1'>
@@ -140,7 +129,7 @@ export default function ExperienciaSection() {
 								</li>
 							))}
 						</ul>
-					</motion.div>
+					</Card>
 				))}
 			</div>
 		</motion.section>

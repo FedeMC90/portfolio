@@ -2,14 +2,14 @@
 
 import { motion } from 'framer-motion';
 import { useState, FormEvent } from 'react';
-import { useTheme } from '@/contexts/ThemeContext';
 import emailjs from '@emailjs/browser';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
+import { SectionTitle, Card } from '@/components/ui';
 
 /**
- * Componente ContactoSection - Sección de contacto
- * Muestra información de contacto y redes sociales
+ * ContactSection Component - Contact section
+ * Displays contact information and social networks
  */
 
 // Datos de contacto
@@ -52,7 +52,6 @@ const contactInfo = {
 };
 
 export default function ContactoSection() {
-	const { theme } = useTheme();
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
@@ -104,7 +103,7 @@ export default function ContactoSection() {
 
 	return (
 		<>
-			{/* Overlay de loading con spinner */}
+			{/* Loading overlay with spinner */}
 			{isSubmitting && (
 				<motion.div
 					initial={{ opacity: 0 }}
@@ -126,22 +125,11 @@ export default function ContactoSection() {
 				transition={{ duration: 0.5 }}
 				className='w-full max-w-4xl mx-auto px-4 py-8'
 			>
-				<h2
-					className={`text-3xl md:text-4xl font-bold text-[var(--primary-cyan)] mb-8 ${
-						theme === 'dark' ? 'glow-text' : ''
-					}`}
-				>
-					Contacto
-				</h2>
+				<SectionTitle>Contacto</SectionTitle>
 
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8'>
-					{/* Información de contacto */}
-					<motion.div
-						initial={{ opacity: 0, x: -50 }}
-						animate={{ opacity: 1, x: 0 }}
-						transition={{ delay: 0.2, duration: 0.5 }}
-						className='bg-[var(--background-secondary)]/80 backdrop-blur-sm rounded-lg border border-[var(--primary-cyan)]/30 p-4 sm:p-6 hover:border-[var(--primary-cyan)] transition-all'
-					>
+					{/* Contact information */}
+					<Card>
 						<h3 className='text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-3 sm:mb-4'>
 							Información de Contacto
 						</h3>
@@ -172,7 +160,7 @@ export default function ContactoSection() {
 								</div>
 							</motion.a>
 
-							{/* Teléfono */}
+							{/* Phone */}
 							<motion.a
 								href='https://wa.me/5491138650926'
 								target='_blank'
@@ -199,7 +187,7 @@ export default function ContactoSection() {
 								</div>
 							</motion.a>
 
-							{/* Ubicación */}
+							{/* Location */}
 							<div className='flex items-center gap-3 pl-4'>
 								<svg
 									className='w-6 h-6 text-[var(--primary-cyan)]'
@@ -223,9 +211,9 @@ export default function ContactoSection() {
 								<p className='text-sm text-gray-400'>Buenos Aires, Argentina</p>
 							</div>
 						</div>
-					</motion.div>
+					</Card>
 
-					{/* Redes sociales */}
+					{/* Social networks */}
 					<motion.div
 						initial={{ opacity: 0, x: 50 }}
 						animate={{ opacity: 1, x: 0 }}
@@ -252,7 +240,7 @@ export default function ContactoSection() {
 					</motion.div>
 				</div>
 
-				{/* Formulario de contacto (opcional) */}
+				{/* Contact form (optional) */}
 				<motion.div
 					initial={{ opacity: 0, x: 50 }}
 					animate={{ opacity: 1, x: 0 }}
@@ -265,50 +253,34 @@ export default function ContactoSection() {
 						onSubmit={handleSubmit}
 						className='space-y-4'
 					>
-						{/* Nombre */}
+						{/* Name */}
 						<div>
-							<label
-								htmlFor='name'
-								className='block text-sm font-medium text-[var(--text-primary)] mb-1'
-							>
-								Nombre
-							</label>
+							<label htmlFor='name'>Nombre</label>
 							<input
 								type='text'
 								id='name'
 								value={formData.name}
 								onChange={handleChange}
 								required
-								className='w-full px-4 py-2 bg-[var(--background)]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-[var(--text-primary)] placeholder-gray-500'
 							/>
 						</div>
 
 						{/* Email */}
 						<div>
-							<label
-								htmlFor='email'
-								className='block text-sm font-medium text-[var(--text-primary)] mb-1'
-							>
-								Email
-							</label>
+							<label htmlFor='email'>Email</label>
 							<input
 								type='email'
 								id='email'
 								value={formData.email}
 								onChange={handleChange}
 								required
-								className='w-full px-4 py-2 bg-[var(--background)]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-[var(--text-primary)] placeholder-gray-500'
 								placeholder='tu@email.com'
 							/>
 						</div>
+
 						{/* Phone */}
 						<div>
-							<label
-								htmlFor='phone'
-								className='block text-sm font-medium text-[var(--text-primary)] mb-1'
-							>
-								Teléfono
-							</label>
+							<label htmlFor='phone'>Teléfono</label>
 							<PhoneInput
 								international
 								defaultCountry='AR'
@@ -316,30 +288,24 @@ export default function ContactoSection() {
 								onChange={(value) => setPhone(value || '')}
 								limitMaxLength={true}
 								smartCaret={true}
-								className='w-full px-4 py-2 bg-[var(--background)]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-[var(--text-primary)] placeholder-gray-500'
+								className='phone-input'
 							/>
 						</div>
 
-						{/* message */}
+						{/* Message */}
 						<div>
-							<label
-								htmlFor='message'
-								className='block text-sm font-medium text-[var(--text-primary)] mb-1'
-							>
-								Mensaje
-							</label>
+							<label htmlFor='message'>Mensaje</label>
 							<textarea
 								id='message'
 								rows={4}
 								value={formData.message}
 								onChange={handleChange}
 								required
-								className='w-full px-4 py-2 bg-[var(--background)]/50 border border-[var(--primary-cyan)]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--primary-cyan)] text-[var(--text-primary)] placeholder-gray-500'
 								placeholder='Escribe tu mensaje aquí...'
 							/>
 						</div>
 
-						{/* Mensajes de estado */}
+						{/* Status messages */}
 						{submitStatus === 'success' && (
 							<motion.div
 								initial={{ opacity: 0, y: -10 }}
@@ -360,7 +326,7 @@ export default function ContactoSection() {
 							</motion.div>
 						)}
 
-						{/* Botón de envío */}
+						{/* Submit button */}
 						<motion.button
 							type='submit'
 							disabled={isSubmitting}
