@@ -13,7 +13,26 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang='es'>
+		<html
+			lang='es'
+			suppressHydrationWarning
+		>
+			<head>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+							(function() {
+								const theme = localStorage.getItem('theme') || 'dark';
+								if (theme === 'dark') {
+									document.documentElement.classList.add('dark');
+								} else {
+									document.documentElement.classList.remove('dark');
+								}
+							})();
+						`,
+					}}
+				/>
+			</head>
 			<body
 				className='antialiased'
 				suppressHydrationWarning

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Card, SectionTitle } from '@/components/ui';
+import { useTranslation } from '@/contexts/LanguageContext';
 
 /**
  * Componente ExperienciaSection - Sección de experiencia laboral
@@ -74,6 +75,8 @@ const experiencias = [
 ];
 
 export default function ExperienceSection() {
+	const { t } = useTranslation();
+
 	return (
 		<motion.section
 			initial={{ opacity: 0, y: 50 }}
@@ -82,7 +85,7 @@ export default function ExperienceSection() {
 			transition={{ duration: 0.5 }}
 			className='w-full max-w-4xl mx-auto px-4 py-8'
 		>
-			<SectionTitle>Experiencia Laboral</SectionTitle>
+			<SectionTitle>{t.experience.title}</SectionTitle>
 
 			<div className='space-y-6'>
 				{experiencias.map((exp, index) => (

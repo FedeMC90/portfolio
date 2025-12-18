@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Card, Badge, SectionTitle, Button } from '@/components/ui';
+import { useTranslation } from '@/contexts/LanguageContext';
 
 /**
  * Componente ProyectosSection - Sección de proyectos
@@ -29,6 +30,8 @@ const proyectos = [
 ];
 
 export default function ProjectsSection() {
+	const { t } = useTranslation();
+
 	return (
 		<motion.section
 			initial={{ opacity: 0, y: 50 }}
@@ -37,7 +40,7 @@ export default function ProjectsSection() {
 			transition={{ duration: 0.5 }}
 			className='w-full max-w-4xl mx-auto px-4 py-8'
 		>
-			<SectionTitle>Proyectos destacados</SectionTitle>
+			<SectionTitle>{t.projects.title}</SectionTitle>
 
 			<div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 				{proyectos.map((proyecto, index) => (

@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useTranslation } from '@/contexts/LanguageContext';
+import LanguageSwitcher from '@/components/LanguageSwitcher/LanguageSwitcher';
 
 /**
  * Componente Navigation - Barra de navegación con botones
@@ -17,18 +19,19 @@ interface NavigationProps {
 	onSectionChange: (section: string) => void;
 }
 
-// Array con las secciones disponibles
-const sections = [
-	{ id: 'home', label: 'Inicio' },
-	{ id: 'experiencia', label: 'Experiencia Laboral' },
-	{ id: 'estudios', label: 'Estudios' },
-	{ id: 'proyectos', label: 'Proyectos' },
-	{ id: 'contacto', label: 'Contacto' },
-];
-
 export default function Navigation({ activeSection, onSectionChange }: NavigationProps) {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 	const { theme, toggleTheme } = useTheme();
+	const { t } = useTranslation();
+
+	// Array with available sections
+	const sections = [
+		{ id: 'home', label: t.nav.home },
+		{ id: 'experiencia', label: t.nav.experience },
+		{ id: 'estudios', label: t.nav.education },
+		{ id: 'proyectos', label: t.nav.projects },
+		{ id: 'contacto', label: t.nav.contact },
+	];
 
 	const handleMobileNavClick = (sectionId: string) => {
 		onSectionChange(sectionId);
@@ -53,6 +56,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 							alt='Logo FMC'
 							width={60}
 							height={35}
+							suppressHydrationWarning
 							className={`object-contain sm:w-[90px] sm:h-[50px] ${
 								theme === 'dark' ? 'drop-shadow-[0_0_15px_rgba(0,217,255,0.8)]' : ''
 							}`}
@@ -80,6 +84,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 									{activeSection === section.id && (
 										<motion.div
 											layoutId='activeTab'
+											suppressHydrationWarning
 											className={`absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--primary-cyan)] ${
 												theme === 'dark' ? 'shadow-[0_0_10px_rgba(0,217,255,0.8)]' : ''
 											}`}
@@ -101,6 +106,10 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 					>
 						Descargar CV
 					</motion.a>
+					{/* Language Switcher - Desktop only */}
+					<div className='hidden md:block ml-3'>
+						<LanguageSwitcher />
+					</div>
 					{/* Theme Toggle Button - Desktop only */}
 					<motion.button
 						key={theme}
@@ -111,37 +120,39 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 						className='md:flex items-center justify-center w-10 h-10 ml-3 text-[var(--primary-cyan)] hover:bg-[var(--primary-cyan)]/10 rounded-full transition-all'
 						aria-label='Cambiar tema'
 					>
-						{theme === 'dark' ? (
-							// Sol para modo oscuro
-							<svg
-								className='w-6 h-6'
-								fill='none'
-								stroke='currentColor'
-								viewBox='0 0 24 24'
-							>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									strokeWidth={2}
-									d='M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z'
-								/>
-							</svg>
-						) : (
-							// Luna para modo claro
-							<svg
-								className='w-6 h-6'
-								fill='none'
-								stroke='currentColor'
-								viewBox='0 0 24 24'
-							>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									strokeWidth={2}
-									d='M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'
-								/>
-							</svg>
-						)}
+						<span suppressHydrationWarning>
+							{theme === 'dark' ? (
+								// Sol para modo oscuro
+								<svg
+									className='w-6 h-6'
+									fill='none'
+									stroke='currentColor'
+									viewBox='0 0 24 24'
+								>
+									<path
+										strokeLinecap='round'
+										strokeLinejoin='round'
+										strokeWidth={2}
+										d='M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z'
+									/>
+								</svg>
+							) : (
+								// Luna para modo claro
+								<svg
+									className='w-6 h-6'
+									fill='none'
+									stroke='currentColor'
+									viewBox='0 0 24 24'
+								>
+									<path
+										strokeLinecap='round'
+										strokeLinejoin='round'
+										strokeWidth={2}
+										d='M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'
+									/>
+								</svg>
+							)}
+						</span>
 					</motion.button>{' '}
 					{/* Hamburger Menu Button - Mobile only */}
 					<motion.button
@@ -153,15 +164,24 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 					>
 						<motion.span
 							animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''}`}
+							suppressHydrationWarning
+							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${
+								theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''
+							}`}
 						/>
 						<motion.span
 							animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''}`}
+							suppressHydrationWarning
+							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${
+								theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''
+							}`}
 						/>
 						<motion.span
 							animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''}`}
+							suppressHydrationWarning
+							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${
+								theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''
+							}`}
 						/>
 					</motion.button>
 				</div>
@@ -232,6 +252,16 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 										</motion.button>
 									))}
 								</nav>
+
+								{/* Language Switcher */}
+								<motion.div
+									initial={{ opacity: 0, y: 20 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ delay: 0.4 }}
+									className='mt-4'
+								>
+									<LanguageSwitcher />
+								</motion.div>
 
 								{/* CV Download Button */}
 								<motion.a

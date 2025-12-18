@@ -9,6 +9,7 @@ import EducationSection from '@/components/EducationSection/EducationSection';
 import ProjectsSection from '@/components/ProjectsSection/ProjectsSection';
 import ContactSection from '@/components/ContactSection/ContactSection';
 import { ThemeProvider } from '@/contexts/ThemeContext';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 
 /**
  * Componente Home - Página principal de la SPA
@@ -44,25 +45,27 @@ export default function Home() {
 
 	return (
 		<ThemeProvider>
-			<div className='min-h-screen flex flex-col'>
-				{/* Navegación con botones para cada sección */}
-				<Navigation
-					activeSection={activeSection}
-					onSectionChange={handleSectionChange}
-				/>
+			<LanguageProvider>
+				<div className='min-h-screen flex flex-col'>
+					{/* Navegación con botones para cada sección */}
+					<Navigation
+						activeSection={activeSection}
+						onSectionChange={handleSectionChange}
+					/>
 
-				{/* Contenedor principal con transiciones suaves */}
-				<main className='pt-16 flex-grow'>
-					<AnimatePresence mode='wait'>{renderSection()}</AnimatePresence>
-				</main>
+					{/* Contenedor principal con transiciones suaves */}
+					<main className='pt-16 flex-grow'>
+						<AnimatePresence mode='wait'>{renderSection()}</AnimatePresence>
+					</main>
 
-				{/* Footer */}
-				<footer className='w-full bg-[var(--background)]/90 border-t border-[var(--primary-cyan)]/20 text-[var(--text-primary)] py-6 mt-auto'>
-					<div className='max-w-6xl mx-auto px-4 text-center'>
-						<p className='text-sm'>© 2025 FMC. Todos los derechos reservados.</p>
-					</div>
-				</footer>
-			</div>
+					{/* Footer */}
+					<footer className='w-full bg-[var(--background)]/90 border-t border-[var(--primary-cyan)]/20 text-[var(--text-primary)] py-6 mt-auto'>
+						<div className='max-w-6xl mx-auto px-4 text-center'>
+							<p className='text-sm'>© 2025 FMC. Todos los derechos reservados.</p>
+						</div>
+					</footer>
+				</div>
+			</LanguageProvider>
 		</ThemeProvider>
 	);
 }

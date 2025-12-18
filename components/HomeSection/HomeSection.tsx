@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useTranslation } from '@/contexts/LanguageContext';
 
 /**
  * Componente HomeSection - Sección de inicio
@@ -9,6 +10,7 @@ import { useTheme } from '@/contexts/ThemeContext';
  */
 export default function HomeSection() {
 	const { theme } = useTheme();
+	const { t } = useTranslation();
 
 	return (
 		<motion.section
@@ -48,20 +50,19 @@ export default function HomeSection() {
 					}`}
 				>
 					<span className='md:hidden'>
-						FEDERICO MATIAS CIOCIANO
+						{t.home.title}
 						<br />
-						FULLSTACK DEVELOPER
+						{t.home.subtitle}
 					</span>
-					<span className='hidden md:inline'>FEDERICO MATIAS CIOCIANO // FULLSTACK DEVELOPER</span>
+					<span className='hidden md:inline'>
+						{t.home.title} {' // '} {t.home.subtitle}
+					</span>
 				</h1>
 				<p
 					suppressHydrationWarning
-					// className={`inline-block text-base sm:text-lg md:text-3xl mt-2 text-[var(--accent)] ${
-					// 	theme === 'dark' ? '' : 'bg-[var(--primary-cyan)] py-3 px-7 rounded-full'
-					// }`}
 					className='inline-block text-base sm:text-lg md:text-3xl mt-2 text-[var(--primary-cyan)]'
 				>
-					SOLUCIONES SENCILLAS A SITUACIONES COMPLEJAS
+					{t.home.tagline}
 				</p>
 			</div>
 
@@ -74,10 +75,8 @@ export default function HomeSection() {
 					className='text-center'
 				>
 					<p className='text-sm sm:text-base md:text-xl leading-relaxed max-w-3xl mx-auto text-[var(--text-primary)]'>
-						Transformo requisitos complejos en experiencias web fluidas y escalables. Especialista en crear interfaces
-						de alto rendimiento con Angular y React, respaldadas por APIs robustas con Node.js y bases de datos
-						eficientes como MongoDB y PostgreSQL. <br />
-						Apasionado por la innovación tecnológica y el desarrollo continuo.
+						{t.home.description} <br />
+						{t.home.passion}
 					</p>
 				</motion.div>
 			</div>

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Card, SectionTitle } from '@/components/ui';
+import { useTranslation } from '@/contexts/LanguageContext';
 
 /**
  * Componente EstudiosSection - Sección de formación académica
@@ -35,6 +36,8 @@ const estudios = [
 ];
 
 export default function EducationSection() {
+	const { t } = useTranslation();
+
 	return (
 		<motion.section
 			initial={{ opacity: 0, y: 50 }}
@@ -43,7 +46,7 @@ export default function EducationSection() {
 			transition={{ duration: 0.5 }}
 			className='w-full max-w-4xl mx-auto px-4 py-8'
 		>
-			<SectionTitle>Formación Académica</SectionTitle>
+			<SectionTitle>{t.education.title}</SectionTitle>
 
 			<div className='space-y-6'>
 				{estudios.map((estudio, index) => (
