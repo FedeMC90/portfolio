@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useTranslation } from '@/contexts/LanguageContext';
 import LanguageSwitcher from '@/components/LanguageSwitcher/LanguageSwitcher';
+import ThemeToggle from '@/components/ThemeToggle/ThemeToggle';
 
 /**
  * Componente Navigation - Barra de navegación con botones
@@ -63,7 +64,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 						/>
 					</motion.div>
 					{/* Desktop Navigation - Hidden on mobile */}
-					<ul className='hidden md:flex flex-wrap justify-center gap-0.5 sm:gap-1 md:gap-2 flex-1 mx-2'>
+					<ul className='hidden md:flex flex-wrap justify-center gap-0.5 sm:gap-1 md:gap-2 absolute left-0 right-0 pointer-events-none'>
 						{sections.map((section, index) => (
 							<motion.li
 								key={section.id}
@@ -75,7 +76,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 									onClick={() => onSectionChange(section.id)}
 									whileHover={{ scale: 1.02 }}
 									whileTap={{ scale: 0.98 }}
-									className={`relative px-2 py-2 sm:px-3 sm:py-2 md:px-8 md:py-3 font-medium transition-all text-xs sm:text-sm md:text-base text-[var(--primary-cyan)] ${
+									className={`relative px-2 py-2 sm:px-3 sm:py-2 md:px-8 md:py-3 font-medium transition-all text-xs sm:text-sm md:text-base text-[var(--primary-cyan)] pointer-events-auto ${
 										activeSection === section.id ? 'opacity-100' : 'opacity-60 hover:opacity-100'
 									}`}
 								>
@@ -95,65 +96,42 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 							</motion.li>
 						))}
 					</ul>
-					{/* Botón Descargar CV - Desktop only */}
-					<motion.a
-						href='/docs/Federico_Ciociano_Frontend.pdf'
-						download='Federico_Ciociano_Frontend.pdf'
-						whileHover={{ scale: 1.05 }}
-						whileTap={{ scale: 0.95 }}
-						className='hidden md:inline-block px-2 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2.5 border-2 border-[var(--primary-cyan)] text-[var(--primary-cyan)] font-medium text-xs sm:text-sm md:text-base hover:bg-[var(--primary-cyan)]/10 transition-all whitespace-nowrap'
-						title='Descargar CV'
-					>
-						Descargar CV
-					</motion.a>
-					{/* Language Switcher - Desktop only */}
-					<div className='hidden md:block ml-3'>
+
+					{/* Right side buttons group - Desktop only */}
+					<div className='hidden md:flex items-center gap-3'>
+						{/* Botón Descargar CV */}
+						<motion.a
+							href='/docs/Federico_Ciociano_Frontend.pdf'
+							download='Federico_Ciociano_Frontend.pdf'
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							className='px-2 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2.5 border-2 border-[var(--primary-cyan)] text-[var(--primary-cyan)] font-medium text-xs sm:text-sm md:text-base hover:bg-[var(--primary-cyan)]/10 transition-all whitespace-nowrap'
+							title={t.nav.downloadResume}
+						>
+							{t.nav.downloadResume}
+						</motion.a>
+
+						{/* Language Switcher */}
 						<LanguageSwitcher />
+
+						{/* Theme Toggle Button */}
+						<ThemeToggle />
 					</div>
-					{/* Theme Toggle Button - Desktop only */}
-					<motion.button
-						key={theme}
-						whileHover={{ scale: 1.1, rotate: 15 }}
-						whileTap={{ scale: 0.9 }}
-						onClick={toggleTheme}
-						suppressHydrationWarning
-						className='md:flex items-center justify-center w-10 h-10 ml-3 text-[var(--primary-cyan)] hover:bg-[var(--primary-cyan)]/10 rounded-full transition-all'
-						aria-label='Cambiar tema'
+
+					{/* Theme Toggle Button - Mobile */}
+					<div className='md:hidden'>
+						<ThemeToggle />
+					</div>
+
+					{/* Language Switcher */}
+					<motion.div
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ delay: 0.4 }}
+						className='md:hidden'
 					>
-						<span suppressHydrationWarning>
-							{theme === 'dark' ? (
-								// Sol para modo oscuro
-								<svg
-									className='w-6 h-6'
-									fill='none'
-									stroke='currentColor'
-									viewBox='0 0 24 24'
-								>
-									<path
-										strokeLinecap='round'
-										strokeLinejoin='round'
-										strokeWidth={2}
-										d='M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z'
-									/>
-								</svg>
-							) : (
-								// Luna para modo claro
-								<svg
-									className='w-6 h-6'
-									fill='none'
-									stroke='currentColor'
-									viewBox='0 0 24 24'
-								>
-									<path
-										strokeLinecap='round'
-										strokeLinejoin='round'
-										strokeWidth={2}
-										d='M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'
-									/>
-								</svg>
-							)}
-						</span>
-					</motion.button>{' '}
+						<LanguageSwitcher />
+					</motion.div>
+
 					{/* Hamburger Menu Button - Mobile only */}
 					<motion.button
 						whileHover={{ scale: 1.1 }}
@@ -253,17 +231,6 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 									))}
 								</nav>
 
-								{/* Language Switcher */}
-								<motion.div
-									initial={{ opacity: 0, y: 20 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ delay: 0.4 }}
-									className='mt-4'
-								>
-									<LanguageSwitcher />
-								</motion.div>
-
-								{/* CV Download Button */}
 								<motion.a
 									initial={{ opacity: 0, y: 20 }}
 									animate={{ opacity: 1, y: 0 }}

@@ -5,6 +5,7 @@ export const pt = {
 		projects: 'Projetos',
 		education: 'Educação',
 		contact: 'Contato',
+		downloadResume: 'Baixar currículo',
 	},
 	home: {
 		title: 'FEDERICO MATIAS CIOCIANO',

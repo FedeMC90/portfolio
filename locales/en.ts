@@ -5,6 +5,7 @@ export const en = {
 		projects: 'Projects',
 		education: 'Education',
 		contact: 'Contact',
+		downloadResume: 'Download resume',
 	},
 	home: {
 		title: 'FEDERICO MATIAS CIOCIANO',
