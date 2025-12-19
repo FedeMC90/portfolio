@@ -1,0 +1,53 @@
+name: Version Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Get versions
+        id: versions
+        run: |
+          # Get PR branch version
+          PR_VERSION=$(node -p "require('./package.json').version")
+          echo "pr_version=$PR_VERSION" >> $GITHUB_OUTPUT
+
+          # Get main branch version
+          git fetch origin main:main
+          git checkout main
+          MAIN_VERSION=$(node -p "require('./package.json').version")
+          echo "main_version=$MAIN_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Compare versions
+        run: |
+          PR_VERSION="${{ steps.versions.outputs.pr_version }}"
+          MAIN_VERSION="${{ steps.versions.outputs.main_version }}"
+
+          echo "📦 Main version: $MAIN_VERSION"
+          echo "📦 PR version: $PR_VERSION"
+
+          if [ "$PR_VERSION" = "$MAIN_VERSION" ]; then
+            echo "❌ Error: Versions are equal. Please increment version."
+            exit 1
+          fi
+
+          # Install semver for comparison
+          npm install -g semver
+
+          # Check if PR version is greater
+          fi
