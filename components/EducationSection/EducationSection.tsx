@@ -10,33 +10,9 @@ import { useTranslation } from '@/contexts/LanguageContext';
  * Muestra los estudios y certificaciones del usuario
  */
 
-// Datos de ejemplo de estudios
-const estudios = [
-	{
-		id: 1,
-		titulo: 'FullStack Developer JS/Node.JS/React',
-		institucion: 'Henry Bootcamp',
-		periodo: '2022 - 2023',
-		logo: '/images/henry-logo.png',
-		descripcion: [
-			'Programa intensivo y basado en proyectos que abarca el ciclo completo de desarrollo de aplicaciones web. Dominio del stack PERN (React/Node.js) para la construcción de Front-End y Back-End con bases de datos relacionales y no relacionales.',
-			'Proyecto final. Web tipo librería basada en JavaScript utilizando manejo de estados con React/Redux, Hooks Express y Sequelize para la creación de la base de datos.',
-		],
-	},
-	{
-		id: 2,
-		titulo: 'TypeScript: Guía completa',
-		institucion: 'Udemy',
-		periodo: '2023',
-		logo: '/images/udemy-logo.png',
-		descripcion: [
-			'Este curso me ha proporcionado una base sólida en el lenguaje y aborda temas avanzados para poder desarrollar aplicaciones de alta calidad y comprender mejor las características y ventajas de TypeScript.',
-		],
-	},
-];
-
 export default function EducationSection() {
 	const { t } = useTranslation();
+	const estudios = t.education.list;
 
 	return (
 		<motion.section

@@ -1,3 +1,5 @@
+import { footer } from "framer-motion/client";
+
 export const es = {
 	nav: {
 		home: 'Inicio',
@@ -32,11 +34,91 @@ export const es = {
 			11: 'Nov',
 			12: 'Dic',
 		},
+		list: [
+			{
+				id: 1,
+				cargo: 'Front-End Lead Developer Angular & Full Stack',
+				empresa: 'Prosegur Argentina',
+				logo: '/images/prosegur-logo.png',
+				periodo: 'Febrero 2024 - Noviembre 2025',
+				logros: [
+					'Desarrollé el módulo de solicitudes de préstamos utilizado en todo LATAM. Los empleados ya no tienen que ir a la empresa y presentar los papeles físicos si no que pueden hacerlo a través de la aplicación. Adicionalmente, se digitalizó la gestión de las mismas.',
+					'Implementé nuevas estrategias y más seguridad en los despliegues reduciendo los issues un 80%.',
+					'Diseñé un sistema para abordar la deuda técnica pudiendo así darle más protagonismo sin reducir la productividad lo cual derivó en una disminución de tickets de soporte del 25%.',
+					'Participé en el desarrollo de modelos estandarizados de documentación para optimizar el proceso de estimación. Esto incrementó la precisión de la planificación y redujo los ciclos de desarrollo en un 20%.',
+				],
+			},
+			{
+				id: 2,
+				cargo: 'Front-End Developer Angular (Freelance)',
+				empresa: 'Web AFP insumos industriales',
+				logo: '/images/afp-logo.png',
+				periodo: 'Agosto 2025',
+				link: 'https://www.afp.com.ar/',
+				logros: [
+					'Desarrollé la SPA con Angular 17 + PrimeNG. Diseño Responsive Mobile y consumo de APIs externas.',
+					'Implementé modularización, reutilización de código y clean code para mantener un proyecto sencillo y escalable.',
+				],
+			},
+			{
+				id: 3,
+				cargo: 'FullStack developer JS/TS/Node.JS/React',
+				empresa: 'Fpay',
+				logo: '/images/fpay-logo.png',
+				periodo: 'Octubre 2022 - Enero 2024',
+				logros: [
+					'Desarrollé nuevas soluciones para el sistema de back office.',
+					'Mejoré la eficiencia del código reduciendo la complejidad de los procesos y los tiempos de carga un 20%.',
+					'Participé activamente en el diseño y refinamiento de las tareas.',
+				],
+			},
+			{
+				id: 4,
+				cargo: 'Gestor de Negocio & Team Leader (Independiente)',
+				empresa: 'PSA',
+				logo: '/images/psa-logo.png',
+				periodo: 'Enero 2017 - Septiembre 2022',
+				logros: [
+					'Liderazgo y Mentoring: Formación y conducción de equipos de ventas de alto rendimiento. Responsable del onboarding, capacitación técnica y coaching continuo de nuevos miembros.',
+					'Gestión de Proyectos: Planificación estratégica y ejecución de objetivos comerciales a corto y largo plazo, desarrollando una fuerte autodisciplina y gestión del tiempo.',
+					'Comunicación efectiva: Desarrollo de oratoria y negociación para la gestión de clientes y resolución de conflictos.',
+				],
+			},
+			{
+				id: 5,
+				cargo: 'Desarrollador C',
+				empresa: 'Istorming',
+				logo: '/images/istorming-logo.png',
+				periodo: 'Diciembre 2010 - Diciembre 2016',
+				logros: [
+					'Optimicé el rendimiento del sistema de liquidación mediante refactoring estratégico de código, logrando un 15% de reducción en los tiempos de proceso.',
+					'Implementé nuevas funcionalidades basadas en los requisitos del cliente, mejorando la satisfacción del usuario final y reduciendo los tickets de soporte en un 10%.',
+				],
+			},
+		],
 	},
 	projects: {
 		title: 'Proyectos',
-		viewProject: 'Ver Proyecto',
+		viewProject: 'Ver proyecto',
 		technologies: 'Tecnologías',
+		list: [
+			{
+				id: 1,
+				nombre: 'Portfolio Personal',
+				descripcion:
+					'Desarrollado con el objetivo de mostrar mis habilidades y proyectos. Utilicé tecnologías modernas para crear una experiencia de usuario atractiva y funcional.',
+				tecnologias: ['Next.js', 'TypeScript', 'Framer Motion', 'Tailwind CSS'],
+				url: 'https://fmc-portfolio.vercel.app/',
+			},
+			{
+				id: 2,
+				nombre: 'Biblioteca de juegos',
+				descripcion:
+					'Fue mi proyecto final individual bootcamp Henry. Con una estructura básica y algunos conceptos que debía cumplir otorgados por el instituto diseñé, construí y desarrollé tanto back, front y la base de datos desde cero.',
+				tecnologias: ['JavaScript', 'React', 'Node.js', 'PostgreSQL', 'Sequelize', 'Express'],
+				url: 'https://lojueguito.onrender.com/',
+			},
+		],
 	},
 	education: {
 		title: 'Educación',
@@ -55,6 +137,29 @@ export const es = {
 			11: 'Nov',
 			12: 'Dic',
 		},
+		list: [
+			{
+				id: 1,
+				titulo: 'FullStack Developer JS/Node.JS/React',
+				institucion: 'Henry Bootcamp',
+				periodo: '2022 - 2023',
+				logo: '/images/henry-logo.png',
+				descripcion: [
+					'Programa intensivo y basado en proyectos que abarca el ciclo completo de desarrollo de aplicaciones web. Dominio del stack PERN (React/Node.js) para la construcción de Front-End y Back-End con bases de datos relacionales y no relacionales.',
+					'Proyecto final. Web tipo librería basada en JavaScript utilizando manejo de estados con React/Redux, Hooks Express y Sequelize para la creación de la base de datos.',
+				],
+			},
+			{
+				id: 2,
+				titulo: 'TypeScript: Guía completa',
+				institucion: 'Udemy',
+				periodo: '2023',
+				logo: '/images/udemy-logo.png',
+				descripcion: [
+					'Este curso me ha proporcionado una base sólida en el lenguaje y aborda temas avanzados para poder desarrollar aplicaciones de alta calidad y comprender mejor las características y ventajas de TypeScript.',
+				],
+			},
+		],
 	},
 	contact: {
 		title: 'Contacto',
@@ -77,5 +182,8 @@ export const es = {
 			success: '✓ Mensaje enviado correctamente',
 			error: '✗ Error al enviar el mensaje. Inténtalo de nuevo.',
 		},
+	},
+	footer: {
+		rightsReserved: 'Todos los derechos reservados.',
 	},
 };

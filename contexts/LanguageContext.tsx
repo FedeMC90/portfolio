@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, startTransition, ReactNode } from 'react';
 import { es } from '@/locales/es';
 import { en } from '@/locales/en';
 import { pt } from '@/locales/pt';
@@ -13,6 +13,7 @@ interface LanguageContextType {
 	language: Language;
 	setLanguage: (language: Language) => void;
 	t: Translations;
+	isReady: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -24,30 +25,31 @@ const translations: Record<Language, Translations> = {
 };
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-	const [language, setLanguageState] = useState<Language>('es');
-	const [mounted, setMounted] = useState(false);
+	const [state, setState] = useState({ language: 'es' as Language, isReady: false });
 
 	useEffect(() => {
-		setMounted(true);
-		const savedLanguage = localStorage.getItem('language') as Language;
-		if (savedLanguage && ['es', 'en', 'pt'].includes(savedLanguage)) {
-			setLanguageState(savedLanguage);
-		}
+		// Después de montar, restaurar el idioma guardado
+		const saved = localStorage.getItem('language') as Language;
+		const finalLanguage = saved && ['es', 'en', 'pt'].includes(saved) ? saved : 'es';
+
+		// Usar startTransition para evitar el warning de cascading renders
+		startTransition(() => {
+			setState({ language: finalLanguage, isReady: true });
+		});
 	}, []);
 
 	const setLanguage = (newLanguage: Language) => {
-		setLanguageState(newLanguage);
-		if (mounted) {
-			localStorage.setItem('language', newLanguage);
-		}
+		setState({ language: newLanguage, isReady: true });
+		localStorage.setItem('language', newLanguage);
 	};
 
 	return (
 		<LanguageContext.Provider
 			value={{
-				language,
+				language: state.language,
 				setLanguage,
-				t: translations[language],
+				t: translations[state.language],
+				isReady: state.isReady,
 			}}
 		>
 			{children}

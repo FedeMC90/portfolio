@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useTranslation } from '@/contexts/LanguageContext';
-import LanguageSwitcher from '@/components/LanguageSwitcher/LanguageSwitcher';
-import ThemeToggle from '@/components/ThemeToggle/ThemeToggle';
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher/LanguageSwitcher';
+import ThemeToggle from '@/components/ui/ThemeToggle/ThemeToggle';
 
 /**
  * Componente Navigation - Barra de navegación con botones
@@ -22,7 +22,7 @@ interface NavigationProps {
 
 export default function Navigation({ activeSection, onSectionChange }: NavigationProps) {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const { theme, toggleTheme } = useTheme();
+	const { theme } = useTheme();
 	const { t } = useTranslation();
 
 	// Array with available sections
@@ -57,12 +57,12 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 							alt='Logo FMC'
 							width={60}
 							height={35}
-							suppressHydrationWarning
 							className={`object-contain sm:w-[90px] sm:h-[50px] ${
 								theme === 'dark' ? 'drop-shadow-[0_0_15px_rgba(0,217,255,0.8)]' : ''
 							}`}
 						/>
 					</motion.div>
+
 					{/* Desktop Navigation - Hidden on mobile */}
 					<ul className='hidden md:flex flex-wrap justify-center gap-0.5 sm:gap-1 md:gap-2 absolute left-0 right-0 pointer-events-none'>
 						{sections.map((section, index) => (
@@ -85,7 +85,6 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 									{activeSection === section.id && (
 										<motion.div
 											layoutId='activeTab'
-											suppressHydrationWarning
 											className={`absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--primary-cyan)] ${
 												theme === 'dark' ? 'shadow-[0_0_10px_rgba(0,217,255,0.8)]' : ''
 											}`}
@@ -123,7 +122,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 						<ThemeToggle />
 					</div>
 
-					{/* Language Switcher */}
+					{/* Language Switcher - Mobile*/}
 					<motion.div
 						animate={{ opacity: 1, y: 0 }}
 						transition={{ delay: 0.4 }}
@@ -142,21 +141,18 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 					>
 						<motion.span
 							animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-							suppressHydrationWarning
 							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${
 								theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''
 							}`}
 						/>
 						<motion.span
 							animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-							suppressHydrationWarning
 							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${
 								theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''
 							}`}
 						/>
 						<motion.span
 							animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-							suppressHydrationWarning
 							className={`w-6 h-0.5 bg-[var(--primary-cyan)] block ${
 								theme === 'dark' ? 'shadow-[0_0_5px_rgba(0,217,255,0.8)]' : ''
 							}`}
@@ -240,7 +236,7 @@ export default function Navigation({ activeSection, onSectionChange }: Navigatio
 									onClick={() => setIsMobileMenuOpen(false)}
 									className='mt-auto py-3 px-6 border-2 border-[var(--primary-cyan)] text-[var(--primary-cyan)] font-bold text-center rounded-lg hover:bg-[var(--primary-cyan)]/10 transition-all shadow-[0_0_15px_rgba(0,217,255,0.3)]'
 								>
-									Descargar CV
+									{t.nav.downloadResume}
 								</motion.a>
 							</div>
 						</motion.div>

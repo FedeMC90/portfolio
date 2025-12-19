@@ -28,6 +28,8 @@ export default function RootLayout({
 								} else {
 									document.documentElement.classList.remove('dark');
 								}
+								// Siempre iniciar en español para evitar hydration mismatch
+								window.__INITIAL_LANGUAGE__ = 'es';
 							})();
 						`,
 					}}

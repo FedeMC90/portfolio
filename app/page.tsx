@@ -8,24 +8,18 @@ import ExperienceSection from '@/components/ExperienceSection/ExperienceSection'
 import EducationSection from '@/components/EducationSection/EducationSection';
 import ProjectsSection from '@/components/ProjectsSection/ProjectsSection';
 import ContactSection from '@/components/ContactSection/ContactSection';
+import Footer from '@/components/Footer/Footer';
 import { ThemeProvider } from '@/contexts/ThemeContext';
-import { LanguageProvider } from '@/contexts/LanguageContext';
+import { LanguageProvider, useTranslation } from '@/contexts/LanguageContext';
 
-/**
- * Componente Home - Página principal de la SPA
- * Gestiona el estado de la sección activa y renderiza los componentes correspondientes
- * Utiliza AnimatePresence de framer-motion para transiciones suaves entre secciones
- */
-export default function Home() {
-	// Estado para controlar qué sección está activa
+function HomeContent() {
+	const { isReady } = useTranslation();
 	const [activeSection, setActiveSection] = useState('home');
 
-	// Función para cambiar de sección
 	const handleSectionChange = (section: string) => {
 		setActiveSection(section);
 	};
 
-	// Función para renderizar la sección activa
 	const renderSection = () => {
 		switch (activeSection) {
 			case 'home':
@@ -44,27 +38,32 @@ export default function Home() {
 	};
 
 	return (
+		<div
+			className='min-h-screen flex flex-col transition-opacity duration-300'
+			style={{ opacity: isReady ? 1 : 0 }}
+		>
+			<Navigation
+				activeSection={activeSection}
+				onSectionChange={handleSectionChange}
+			/>
+			<main className='pt-16 flex-grow'>
+				<AnimatePresence mode='wait'>{renderSection()}</AnimatePresence>
+			</main>
+			<Footer />
+		</div>
+	);
+}
+
+/**
+ * Componente Home - Página principal de la SPA
+ * Gestiona el estado de la sección activa y renderiza los componentes correspondientes
+ * Utiliza AnimatePresence de framer-motion para transiciones suaves entre secciones
+ */
+export default function Home() {
+	return (
 		<ThemeProvider>
 			<LanguageProvider>
-				<div className='min-h-screen flex flex-col'>
-					{/* Navegación con botones para cada sección */}
-					<Navigation
-						activeSection={activeSection}
-						onSectionChange={handleSectionChange}
-					/>
-
-					{/* Contenedor principal con transiciones suaves */}
-					<main className='pt-16 flex-grow'>
-						<AnimatePresence mode='wait'>{renderSection()}</AnimatePresence>
-					</main>
-
-					{/* Footer */}
-					<footer className='w-full bg-[var(--background)]/90 border-t border-[var(--primary-cyan)]/20 text-[var(--text-primary)] py-6 mt-auto'>
-						<div className='max-w-6xl mx-auto px-4 text-center'>
-							<p className='text-sm'>© 2025 FMC. Todos los derechos reservados.</p>
-						</div>
-					</footer>
-				</div>
+				<HomeContent />
 			</LanguageProvider>
 		</ThemeProvider>
 	);

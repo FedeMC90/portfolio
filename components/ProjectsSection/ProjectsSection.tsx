@@ -9,28 +9,9 @@ import { useTranslation } from '@/contexts/LanguageContext';
  * Muestra los proyectos destacados del usuario
  */
 
-// Datos de ejemplo de proyectos
-const proyectos = [
-	{
-		id: 1,
-		nombre: 'Portfolio Personal',
-		descripcion:
-			'Este portfolio desarrollado con el objetivo de mostrar mis habilidades y proyectos. Utilicé tecnologías modernas para crear una experiencia de usuario atractiva y funcional.',
-		tecnologias: ['Next.js', 'TypeScript', 'Framer Motion', 'Tailwind CSS'],
-		url: 'https://fmc-portfolio.vercel.app/',
-	},
-	{
-		id: 2,
-		nombre: 'Biblioteca de juegos',
-		descripcion:
-			'Fue mi proyecto final individual bootcamp Henry. Con una estructura básica y algunos conceptos que debía cumplir otorgados por el instituto diseñé, construí y desarrollé tanto back, front y la base de datos desde cero.',
-		tecnologias: ['JavaScript', 'React', 'Node.js', 'PostgreSQL', 'Sequelize', 'Express'],
-		url: 'https://lojueguito.onrender.com/',
-	},
-];
-
 export default function ProjectsSection() {
 	const { t } = useTranslation();
+	const proyectos = t.projects.list;
 
 	return (
 		<motion.section
@@ -65,7 +46,7 @@ export default function ProjectsSection() {
 							external
 							className='shadow-[0_0_15px_rgba(0,217,255,0.3)]'
 						>
-							Ver Proyecto
+							{t.projects.viewProject}
 						</Button>
 					</Card>
 				))}

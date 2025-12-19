@@ -32,11 +32,91 @@ export const en = {
 			11: 'Nov',
 			12: 'Dec',
 		},
+		list: [
+			{
+				id: 1,
+				cargo: 'Front-End Lead Developer Angular & Full Stack',
+				empresa: 'Prosegur Argentina',
+				logo: '/images/prosegur-logo.png',
+				periodo: 'February 2024 - November 2025',
+				logros: [
+					'Developed the loan application module used throughout LATAM. Employees no longer have to go to the company and submit physical documents, as they can do it through the application. Additionally, the management of these was digitized.',
+					'Implemented new strategies and enhanced security in deployments, reducing issues by 80%.',
+					'Designed a system to address technical debt, giving it more prominence without reducing productivity, which led to a 25% decrease in support tickets.',
+					'Participated in developing standardized documentation models to optimize the estimation process. This increased planning accuracy and reduced development cycles by 20%.',
+				],
+			},
+			{
+				id: 2,
+				cargo: 'Front-End Developer Angular (Freelance)',
+				empresa: 'AFP Industrial Supplies Website',
+				logo: '/images/afp-logo.png',
+				periodo: 'August 2025',
+				link: 'https://www.afp.com.ar/',
+				logros: [
+					'Developed the SPA with Angular 17 + PrimeNG. Responsive Mobile Design and consumption of external APIs.',
+					'Implemented modularization, code reusability, and clean code to maintain a simple and scalable project.',
+				],
+			},
+			{
+				id: 3,
+				cargo: 'FullStack Developer JS/TS/Node.JS/React',
+				empresa: 'Fpay',
+				logo: '/images/fpay-logo.png',
+				periodo: 'October 2022 - January 2024',
+				logros: [
+					'Developed new solutions for the back office system.',
+					'Improved code efficiency by reducing process complexity and loading times by 20%.',
+					'Actively participated in task design and refinement.',
+				],
+			},
+			{
+				id: 4,
+				cargo: 'Business Manager & Team Leader (Independent)',
+				empresa: 'PSA',
+				logo: '/images/psa-logo.png',
+				periodo: 'January 2017 - September 2022',
+				logros: [
+					'Leadership and Mentoring: Training and leading high-performance sales teams. Responsible for onboarding, technical training, and continuous coaching of new members.',
+					'Project Management: Strategic planning and execution of short and long-term business objectives, developing strong self-discipline and time management.',
+					'Effective Communication: Development of public speaking and negotiation skills for client management and conflict resolution.',
+				],
+			},
+			{
+				id: 5,
+				cargo: 'C Developer',
+				empresa: 'Istorming',
+				logo: '/images/istorming-logo.png',
+				periodo: 'December 2010 - December 2016',
+				logros: [
+					'Optimized the performance of the payroll system through strategic code refactoring, achieving a 15% reduction in processing times.',
+					'Implemented new functionalities based on client requirements, improving end-user satisfaction and reducing support tickets by 10%.',
+				],
+			},
+		],
 	},
 	projects: {
 		title: 'Projects',
-		viewProject: 'View Project',
+		viewProject: 'View project',
 		technologies: 'Technologies',
+		list: [
+			{
+				id: 1,
+				nombre: 'Personal Portfolio',
+				descripcion:
+					'Was developed with the goal of showcasing my skills and projects. I used modern technologies to create an attractive and functional user experience.',
+				tecnologias: ['Next.js', 'TypeScript', 'Framer Motion', 'Tailwind CSS'],
+				url: 'https://fmc-portfolio.vercel.app/',
+			},
+			{
+				id: 2,
+				nombre: 'Game Library',
+				descripcion:
+					'This was my final individual project at Henry Bootcamp. With a basic structure and some requirements provided by the institute, I designed, built, and developed both back-end, front-end, and the database from scratch.',
+				tecnologias: ['JavaScript', 'React', 'Node.js', 'PostgreSQL', 'Sequelize', 'Express'],
+				url: 'https://lojueguito.onrender.com/',
+			},
+		],
 	},
 	education: {
 		title: 'Education',
@@ -55,6 +135,29 @@ export const en = {
 			11: 'Nov',
 			12: 'Dec',
 		},
+		list: [
+			{
+				id: 1,
+				titulo: 'FullStack Developer JS/Node.JS/React',
+				institucion: 'Henry Bootcamp',
+				periodo: '2022 - 2023',
+				logo: '/images/henry-logo.png',
+				descripcion: [
+					'Intensive, project-based program covering the complete cycle of web application development. Mastery of the PERN stack (React/Node.js) for building Front-End and Back-End with relational and non-relational databases.',
+					'Final project. Library-type website based on JavaScript using state management with React/Redux, Hooks, Express, and Sequelize for database creation.',
+				],
+			},
+			{
+				id: 2,
+				titulo: 'TypeScript: Complete Guide',
+				institucion: 'Udemy',
+				periodo: '2023',
+				logo: '/images/udemy-logo.png',
+				descripcion: [
+					'This course provided me with a solid foundation in the language and covers advanced topics to develop high-quality applications and better understand the features and advantages of TypeScript.',
+				],
+			},
+		],
 	},
 	contact: {
 		title: 'Contact',
@@ -77,5 +180,8 @@ export const en = {
 			success: '✓ Message sent successfully',
 			error: '✗ Error sending message. Please try again.',
 		},
+	},
+	footer: {
+		rightsReserved: 'All rights reserved.',
 	},
 };
